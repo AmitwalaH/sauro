@@ -1,0 +1,13 @@
+# Rust and Node build output
+/target/
+/node_modules/
+*.log
+.env
+.DS_Store
+
+# Markers read by the git-gate hook, if ported from doriki
+/.gate-ok
+
+# The owner's method and task files are provided outside version control.
+/METHOD.md
+/tasks/
