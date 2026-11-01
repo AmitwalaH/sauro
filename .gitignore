@@ -1,6 +1,7 @@
-# Rust and Node build output
+# Rust, Node and Python build output
 /target/
 /node_modules/
+__pycache__/
 *.log
 .env
 .DS_Store

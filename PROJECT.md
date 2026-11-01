@@ -95,7 +95,7 @@ sauro/
     LABELING.md       the labeling guide, the contract for every fixture
     fixtures/         one JSON file per AI answer, hand-labeled
     baseline.json     frozen. Precision and recall per state. See frozen things.
-    tools/            Python helpers for labeling and reporting
+    tools/            Python helpers for labeling and reporting, with their tests
   .github/workflows/
 ```
 
@@ -107,6 +107,8 @@ Run all of these before touching anything and paste the results. Run them again 
 cargo fmt --all -- --check
 cargo clippy --all-targets --all-features -- -D warnings
 cargo test --all
+python3 bench/tools/check_fixtures.py
+python3 -m unittest bench/tools/test_check_fixtures.py
 cargo run -p sauro-bench -- --check-baseline     # from task 3 onward
 cd mcp && npm test                                # from task 4 onward
 ```

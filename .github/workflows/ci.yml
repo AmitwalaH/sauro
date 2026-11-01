@@ -30,6 +30,19 @@ jobs:
       - name: test
         run: cargo test --all
 
+  bench:
+    name: bench checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Stdlib only, so the runner's own python3 is enough.
+      - name: every evidence span is in its cited page
+        run: python3 bench/tools/check_fixtures.py
+
+      - name: tests for the fixture check
+        run: python3 -m unittest bench/tools/test_check_fixtures.py
+
   docs:
     name: docs checks
     runs-on: ubuntu-latest
