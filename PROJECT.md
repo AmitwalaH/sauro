@@ -29,15 +29,13 @@ which Claude Code may commit. If any condition is unclear, rule 1 applies as wri
 1. Only on a branch named `task/<YYYY-MM-DD>-<slug>` that matches the open task file.
 2. Only after the full check suite below is green and the results are pasted in the report.
 3. Never push. Never commit to `main`. Never amend, rebase, squash, cherry-pick, or merge.
-4. Commit message format, exactly:
-   ```
-   <area>: <what changed, user-visible, one line>
-
-   Task: tasks/<task file name>
-   Checks: <suite result in one line>
-   ```
+4. Commit message format: first line `<area>: <what changed, user-visible, one line>`, then a
+   blank line, then `Task: tasks/<task file name>` and `Checks: <suite result in one line>`.
+   Trailer lines the harness appends after that (Co-Authored-By, session links) are allowed.
    Areas: core, cli, mcp, skill, bench, docs, ci.
 5. One commit per completed step, not per file.
+6. Claude Code may create a task branch with `git switch -c task/<date>-<slug>` from `main`
+   when `git status` is clean. It never switches away from a branch with uncommitted work.
 
 Pushing, opening pull requests, and merging are always done by a person.
 
