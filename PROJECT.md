@@ -96,6 +96,7 @@ sauro/
     fixtures/         one JSON file per AI answer, hand-labeled
     baseline.json     frozen. Precision and recall per state. See frozen things.
     tools/            Python helpers for labeling and reporting, with their tests
+  docs/               reports that are kept, such as spike results
   .github/workflows/
 ```
 
