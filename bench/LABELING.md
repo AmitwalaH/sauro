@@ -18,6 +18,13 @@ label and, where a span exists, the exact span from the source.
   "domain": "health | news | school | code | finance | other",
   "collected_on": "2026-11-01",
   "answer_text": "the full answer, verbatim",
+  "sources": [
+    {
+      "url": "https://...",
+      "file": "the stored page's file name inside 0001.sources/",
+      "fetched_on": "2026-11-01"
+    }
+  ],
   "claims": [
     {
       "claim_id": "0001-01",
@@ -35,8 +42,11 @@ label and, where a span exists, the exact span from the source.
 }
 ```
 
-The page content is stored next to the fixture as `0001.sources/<hash>.html` with the fetch
-date, so labels can be re-checked against the same page later.
+Each cited page is stored next to the fixture in `0001.sources/`, so labels can be re-checked
+against the same page later. The `sources` list is what links a URL to its stored file: one
+entry per URL, with the file name and the fetch date. Every URL in a claim's `cited_urls` must
+have an entry when the claim has an `evidence_span`. A URL that could not be fetched has no
+file and needs no entry; its claim is `unverifiable` with no span.
 
 ## How to split an answer into claims
 
@@ -114,7 +124,11 @@ These are the places a labeler will hesitate. The decision is made here so it is
 - Do not use an AI to label. The labels are the thing the engine is judged by. If an AI writes
   them, the benchmark is an AI grading itself.
 - Every `supported`, `partial`, and `contradicted` label must have a non-null
-  `evidence_span` that appears verbatim in the stored page. A script checks this.
+  `evidence_span` that appears verbatim in the stored page of one of the claim's cited URLs.
+  `bench/tools/check_fixtures.py` checks this.
+- "Verbatim" means: the span must appear in the page's rendered text (tags removed, entities
+  decoded, script and style dropped) with all whitespace ignored, every other character
+  matching. So copy the span from the page as the browser shows it.
 - Two labelers for the first 20 fixtures. Disagreements are findings. If more than 3 of 20
   claims disagree after discussion, this guide is not clear enough and gets revised before any
   more labeling.
