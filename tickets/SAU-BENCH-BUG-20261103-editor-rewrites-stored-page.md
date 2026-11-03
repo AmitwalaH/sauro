@@ -30,5 +30,14 @@ saving by hand. `files.readonlyInclude` for `bench/fixtures/*.sources/*.html` wo
 every save of a stored page; it was not in the task, so it is offered, not done. The sha256
 check catches whatever still gets through.
 
+## Note, 2026-11-03, after the settings landed
+Read in the owner's editor settings: the user level makes Prettier the default formatter for
+HTML, sets `files.autoSave` to `afterDelay` with a 10 ms delay, and does not set
+`editor.formatOnSave`, which is off by default. Auto-save after a delay does not run
+format-on-save. So the likely path was a manual Format Document, or any keystroke, saved
+10 ms later. That is inferred, not observed. If so, the format-on-save settings above do not
+block it. `files.readonlyInclude` exists in the installed VS Code build and would. Whether
+this ticket is truly resolved is for the owner to decide.
+
 ## Related
 SAU-BENCH-BUG-20261103-stored-page-hash-unchecked.
