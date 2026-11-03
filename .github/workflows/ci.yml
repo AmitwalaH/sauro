@@ -57,9 +57,10 @@ jobs:
       # Matches the raw UTF-8 bytes of U+2014 so it works on any grep. A PCRE
       # \x{2014} pattern errors on greps built without Unicode support, and the
       # error reads as a pass. Found that the hard way on 2026-11-01.
+      # Fixture answers are AI output saved verbatim, so their em dashes are data, not style.
       - name: no em dashes in markdown
         run: |
-          if grep -rn --include='*.md' $'\xe2\x80\x94' . ; then
+          if grep -rn --include='*.md' --exclude-dir=fixtures $'\xe2\x80\x94' . ; then
             echo "em dash found; the method asks for plain hyphens or rewording"
             exit 1
           fi
