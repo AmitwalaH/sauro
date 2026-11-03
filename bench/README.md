@@ -45,10 +45,17 @@ The rules are crude on purpose. You fix them by hand in step 6, so they only sav
   URL, so `.../Ibuprofen_(drug)` survives and `(https://x.org/a).` loses `).`.
 - **Inline URLs** go into `cited_urls` of the sentence they appear in.
 - **Citation chips.** A line that is a bare domain, such as `nhs.uk`, optionally followed by a
-  `+2` line, is a chip. Chip lines are not claims. Every URL under `sources shown:` attaches to
-  the sentence right before each chip. With no chip, they attach to the last claim. With more
-  than one chip, every chip gets every URL and the script prints a warning, because nothing
-  says which URL belongs to which chip. Prune `cited_urls` by hand.
+  `+2` line, is a chip. Chip lines are not claims. A chip covers every claim from the previous
+  heading down to the chip, or from the start of the answer if there is no heading above it
+  (owner decision Q15). Every URL under `sources shown:` attaches to every covered claim. The
+  heading gets no URLs; its skeleton stays so the numbering is stable, and you drop it. With
+  no chip, the URLs attach to the last claim. With more than one chip, each chip's claims get
+  every URL and the script prints a warning, because nothing says which URL belongs to which
+  chip. Prune `cited_urls` by hand. Each covered claim is still labeled on its own.
+- **Headings.** A heading is a line holding one sentence that ends in `?` or has no terminal
+  punctuation, such as `What are the risks?` or `## Risks`. Trailing `*`, `_`, quotes and
+  closing brackets are looked past. A line ending in `:` is a lead-in, not a heading, and
+  belongs to the section above it.
 - Claim ids are `0001-01`, `0001-02`, and so on. Renumber them if you merge or split.
 
 ## Failed fetches

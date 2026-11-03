@@ -58,9 +58,23 @@ CHIP_DOMAIN = re.compile(r"^[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$")
 CHIP_COUNT = re.compile(r"^\+\d+$")
 SOURCES_SHOWN = "sources shown:"
 
+# Owner decision Q15: a chip covers every claim from the previous heading down to it. A
+# heading is a line holding one sentence that ends in "?" or has no terminal punctuation.
+# A line ending in ":" is a lead-in, so it belongs to the section above. Markdown emphasis
+# and closing quotes or brackets are not the line's punctuation, so they are looked past.
+NOT_HEADING_END = ".!:;,…"
+LOOK_PAST_AT_END = "*_\"')]”’"
+
 
 class AnswerError(Exception):
     pass
+
+
+def is_heading(line):
+    if len(SENTENCE_BREAK.split(line)) != 1:
+        return False
+    end = line.rstrip(LOOK_PAST_AT_END)
+    return bool(end) and end[-1] not in NOT_HEADING_END
 
 
 def extract_urls(text):
@@ -109,27 +123,33 @@ def skeleton_claims(fixture_id, answer):
         body = "".join(lines[:marks[-1]])
         shown = extract_urls("".join(lines[marks[-1] + 1:]))
 
-    sentences, chip_targets = [], []
+    sentences, headings, chip_scopes = [], set(), []
     after_chip = False
     for line in body.splitlines():
         line = line.strip()
         if not line:
             continue
         if CHIP_DOMAIN.match(line):
-            if sentences and len(sentences) - 1 not in chip_targets:
-                chip_targets.append(len(sentences) - 1)
+            # The heading itself is not covered. Two chips in a row are one chip.
+            top = max((h for h in headings if h < len(sentences)), default=-1)
+            scope = range(top + 1, len(sentences))
+            if scope and scope not in chip_scopes:
+                chip_scopes.append(scope)
             after_chip = True
             continue
         if after_chip and CHIP_COUNT.match(line):
             continue
         after_chip = False
+        if is_heading(line):
+            headings.add(len(sentences))
         sentences.extend(s for s in (p.strip() for p in SENTENCE_BREAK.split(line)) if s)
     if not sentences:
         raise AnswerError("answer is empty")
 
     cited = [extract_urls(s) for s in sentences]
     if shown:
-        for i in chip_targets or [len(sentences) - 1]:
+        covered = sorted({i for scope in chip_scopes for i in scope})
+        for i in covered or [len(sentences) - 1]:
             cited[i] += [u for u in shown if u not in cited[i]]
 
     claims = [{
@@ -143,7 +163,7 @@ def skeleton_claims(fixture_id, answer):
         "labeler_note": None,
         "hard": False,
     } for n, (text, urls) in enumerate(zip(sentences, cited), 1)]
-    return claims, len(chip_targets)
+    return claims, len(chip_scopes)
 
 
 def extension(content_type):
@@ -280,7 +300,7 @@ def run(src_dir):
     write_json(fixture_path, fixture)
     if chips and chips > 1:
         out.append(f"warning: {chips} citation chips; every sources-shown URL was attached "
-                   "to the sentence before each one. Prune cited_urls by hand.")
+                   "to every claim each one covers. Prune cited_urls by hand.")
     out.append(f"{fixture_path.name}: {len(todo)} fetched, {len(todo) - len(failures)} stored, "
                f"{len(failures)} failed, {len(stored)} already stored, "
                f"{len(fixture['claims'])} claims")
