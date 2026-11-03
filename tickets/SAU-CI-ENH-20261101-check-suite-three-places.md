@@ -13,6 +13,10 @@ target in the `Makefile`, and the steps in `ci.yml`. They have already drifted. 
 2026-11-01, `PROJECT.md` and CI run `check_fixtures.py` and its tests, but `make check` runs
 only fmt, clippy and test.
 
+2026-11-03, task `fixture-tooling`: the gap widens. `PROJECT.md` and CI now also run
+`python3 -m unittest bench/tools/test_fetch_sources.py`, so `make check` misses three Python
+lines instead of two. The `Makefile` was not in that task's approved file list.
+
 ## Why it matters
 Someone who runs `make check` sees green and pushes, then CI goes red on a check they did not
 know existed. Each new check has to be added three times, and the next one will be missed
