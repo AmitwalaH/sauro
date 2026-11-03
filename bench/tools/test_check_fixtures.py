@@ -51,7 +51,7 @@ class CheckFixtures(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
-    def add(self, fid, claims, pages=None, sources=None):
+    def add(self, fid, claims, pages=None, sources=None, reviewed=False):
         """Write a fixture. pages maps url to html; each is stored and listed in sources."""
         pages = {URL_A: PAGE} if pages is None else pages
         src_dir = self.dir / f"{fid}.sources"
@@ -69,7 +69,7 @@ class CheckFixtures(unittest.TestCase):
             "answer_text": "x",
             "sources": listed if sources is None else sources,
             "claims": claims,
-            "reviewed": False,
+            "reviewed": reviewed,
         }
         (self.dir / f"{fid}.json").write_text(json.dumps(fixture), encoding="utf-8")
 
@@ -147,6 +147,43 @@ class CheckFixtures(unittest.TestCase):
         # A 404 has no stored page, so its URL need not resolve to a file.
         self.add("0001", [claim("0001-01", "unverifiable", None, "fetch_failed", urls=(URL_B,))])
         self.assert_passes()
+
+    # label: null means "not yet labeled". It is counted, not failed, until the fixture is
+    # reviewed.
+
+    def test_unlabeled_claim_passes_and_is_counted(self):
+        self.add("0001", [
+            claim("0001-01", None, None, None),
+            claim("0001-02", None, None, None),
+            claim("0001-03", "supported", "Most people do not notice it."),
+        ])
+        r = self.assert_passes()
+        self.assertIn("3 claims, 2 unlabeled, 1 spans", r.stdout)
+
+    def test_unlabeled_claim_is_not_span_checked(self):
+        # A labeler may paste a span before choosing a label. No label, no check yet.
+        self.add("0001", [claim("0001-01", None, "not in the page at all", None)])
+        r = self.assert_passes()
+        self.assertIn("1 unlabeled, 0 spans", r.stdout)
+
+    def test_labeled_bad_span_still_fails_beside_unlabeled(self):
+        self.add("0001", [
+            claim("0001-01", None, None, None),
+            claim("0001-02", "supported", "Ibuprofen always raises blood pressure."),
+        ])
+        r = self.run_script()
+        self.assertEqual(r.returncode, 1, r.stdout)
+        self.assertIn("0001-02", r.stdout)
+        self.assertNotIn("0001-01", r.stdout)
+        self.assertIn("1 unlabeled", r.stdout)
+
+    def test_unlabeled_claim_in_reviewed_fixture_fails(self):
+        # A reviewed fixture is frozen, so it cannot be half-labeled.
+        self.add("0001", [
+            claim("0001-01", "supported", "Most people do not notice it."),
+            claim("0001-02", None, None, None),
+        ], reviewed=True)
+        self.assert_fails_naming("0001-02: label is null in a reviewed fixture")
 
     # A span is checked against the claim's own cited page, through the sources list.
 

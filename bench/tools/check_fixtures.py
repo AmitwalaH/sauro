@@ -13,6 +13,9 @@ What "verbatim" means here, because a labeler copies from the page as a browser 
 
 A span is checked against the claim's own cited pages only. Each cited URL resolves to a
 stored file through the fixture's `sources` list, and every one must resolve.
+
+A claim with `label: null` is not yet labeled. It is counted and not checked, so a
+half-labeled fixture set still passes. A null label in a fixture marked reviewed fails.
 """
 
 import json
@@ -66,23 +69,28 @@ def source_files(fixture, fixture_path):
 
 
 def check_fixture(path):
-    """Return (claims checked, spans checked, list of failure lines) for one fixture file."""
+    """Return (claims, unlabeled claims, spans checked, failure lines) for one fixture file."""
     try:
         fixture = json.loads(path.read_text(encoding="utf-8"))
         claims = fixture["claims"]
         files = source_files(fixture, path)
     except (ValueError, KeyError, TypeError) as e:
-        return 0, 0, [f"{path.name}: cannot read fixture: {e}"]
+        return 0, 0, 0, [f"{path.name}: cannot read fixture: {e}"]
 
     pages = {}  # file path to squashed text, so each page is parsed once
     failures = []
-    spans = 0
+    spans = unlabeled = 0
 
     for c in claims:
         cid = c.get("claim_id", f"{path.stem}-?")
         label = c.get("label")
         span = c.get("evidence_span")
 
+        if label is None:
+            unlabeled += 1
+            if fixture.get("reviewed") is True:
+                failures.append(f"{cid}: label is null in a reviewed fixture")
+            continue
         if label not in LABELS:
             failures.append(f"{cid}: unknown label {label!r}")
             continue
@@ -115,7 +123,7 @@ def check_fixture(path):
         if not any(squash(span) in pages[files[u]] for u in urls):
             failures.append(f"{cid}: evidence_span not found in its cited page")
 
-    return len(claims), spans, failures
+    return len(claims), unlabeled, spans, failures
 
 
 def main(argv):
@@ -123,11 +131,12 @@ def main(argv):
     fixtures_dir = Path(argv[1]) if len(argv) > 1 else default
     files = sorted(fixtures_dir.glob("*.json"))
 
-    total_claims = total_spans = 0
+    total_claims = total_unlabeled = total_spans = 0
     failures = []
     for path in files:
-        n_claims, n_spans, fails = check_fixture(path)
+        n_claims, n_unlabeled, n_spans, fails = check_fixture(path)
         total_claims += n_claims
+        total_unlabeled += n_unlabeled
         total_spans += n_spans
         failures.extend(fails)
 
@@ -135,7 +144,8 @@ def main(argv):
         print(f"FAIL {line}")
     # The counts are printed so a run that found nothing cannot be mistaken for a pass.
     print(
-        f"checked {len(files)} fixtures, {total_claims} claims, {total_spans} spans "
+        f"checked {len(files)} fixtures, {total_claims} claims, {total_unlabeled} unlabeled, "
+        f"{total_spans} spans "
         f"in {fixtures_dir}: {len(failures)} failures"
     )
     return 1 if failures else 0
