@@ -1,0 +1,22 @@
+{
+  // Stored pages and saved answers under bench/fixtures/ are evidence. A save that reformats
+  // them changes their bytes, and check_fixtures.py then fails the page's sha256.
+  // VS Code cannot scope these settings to a folder, so they are set per language. The only
+  // HTML files in the repo are stored pages. The markdown and JSON rules also apply to our
+  // own docs and config, which only lose format-on-save.
+  "[html]": {
+    "editor.formatOnSave": false,
+    "files.insertFinalNewline": false,
+    "files.trimTrailingWhitespace": false
+  },
+  "[markdown]": {
+    "editor.formatOnSave": false,
+    "files.insertFinalNewline": false,
+    "files.trimTrailingWhitespace": false
+  },
+  "[json]": {
+    "editor.formatOnSave": false,
+    "files.insertFinalNewline": false,
+    "files.trimTrailingWhitespace": false
+  }
+}
