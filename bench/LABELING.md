@@ -59,6 +59,15 @@ file and needs no entry; its claim is `unverifiable` with no span.
    reason code `no_citation`. Do not go looking for a source.
 5. A citation attaches to the sentence it follows, and to the sentence before that one only if
    the citation sits at the end of a paragraph that is clearly one point.
+   A citation chip or marker at the end of a section covers every claim from the previous
+   heading (or the start of the answer if there is none) down to the chip. The heading itself
+   is not a claim and gets no URLs. Each covered claim is still labeled on its own against the
+   cited pages. A heading is a line holding one sentence that ends in `?` or has no terminal
+   punctuation; a line ending in `:` is a lead-in, not a heading, and belongs to the section
+   above it. (Owner decision Q15, 2026-11-03.) Published citation benchmarks attach each
+   citation to a sentence (ALCE), to a statement the model segments itself (LongCite), or to a
+   position inside a sentence (ALiiCE, NAACL 2025); none of them defines one citation covering
+   a section, so this rule is a project decision.
 
 ## How to label
 
