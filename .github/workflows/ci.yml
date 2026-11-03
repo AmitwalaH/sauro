@@ -43,6 +43,10 @@ jobs:
       - name: tests for the fixture check
         run: python3 -m unittest bench/tools/test_check_fixtures.py
 
+      # Network is a local server on 127.0.0.1. No test fetches a real URL.
+      - name: tests for the source fetcher
+        run: python3 -m unittest bench/tools/test_fetch_sources.py
+
   docs:
     name: docs checks
     runs-on: ubuntu-latest

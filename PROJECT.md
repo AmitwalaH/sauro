@@ -108,11 +108,21 @@ cargo clippy --all-targets --all-features -- -D warnings
 cargo test --all
 python3 bench/tools/check_fixtures.py
 python3 -m unittest bench/tools/test_check_fixtures.py
+python3 -m unittest bench/tools/test_fetch_sources.py
 cargo run -p sauro-bench -- --check-baseline     # from task 3 onward
 cd mcp && npm test                                # from task 4 onward
 ```
 
 Nothing is green until every line is green or the red is named and explained.
+
+## Fetch policy
+
+Used by `bench/tools/fetch_sources.py`. The values are set once, as constants at the top of
+that file. This list copies them, so change both together.
+
+- Timeout: 20 seconds per request (`TIMEOUT_SECONDS`).
+- Retries: none (`RETRIES = 0`). A failure is recorded. Running the script again is the retry.
+- Body size cap: 10 MB (`MAX_BODY_BYTES`). A larger page is recorded as a failure, not stored.
 
 ## Frozen things
 
