@@ -4,6 +4,12 @@
   // VS Code cannot scope these settings to a folder, so they are set per language. The only
   // HTML files in the repo are stored pages. The markdown and JSON rules also apply to our
   // own docs and config, which only lose format-on-save.
+  //
+  // Stored pages are read-only in the editor, so no format, keystroke or auto-save can
+  // change them. answer.md stays editable, because the owner writes it by hand.
+  "files.readonlyInclude": {
+    "bench/fixtures/*.sources/*.html": true
+  },
   "[html]": {
     "editor.formatOnSave": false,
     "files.insertFinalNewline": false,
