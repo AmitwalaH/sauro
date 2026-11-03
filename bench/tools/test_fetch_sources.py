@@ -223,18 +223,67 @@ class Urls(FetchSourcesBase):
             "It is an NSAID.": [],
         })
 
-    def test_chip_lines_are_not_claims_and_block_urls_go_to_sentence_before_chip(self):
+    def test_chip_lines_are_not_claims_and_with_no_heading_cover_from_the_start(self):
+        # Q15: with no heading above it, a chip covers every claim from the start of the answer.
         a, b = self.server.page("/a"), self.server.page("/b", OTHER)
         self.write_answer(
             "Ibuprofen is an NSAID.\n\nIt can raise blood pressure.\n\nnhs.uk\n+2\n\n"
             f"Tell me your medicine.\n\nsources shown:\n{a}\n{b}\n")
         fx, out = self.run_ok()
         self.assertEqual(self.urls_by_text(fx), {
-            "Ibuprofen is an NSAID.": [],
+            "Ibuprofen is an NSAID.": [a, b],
             "It can raise blood pressure.": [a, b],
             "Tell me your medicine.": [],
         })
         self.assertNotIn("warning", out)
+
+    def test_chip_covers_every_claim_from_the_previous_heading_down(self):
+        # The shape of fixture 0001: question headings, colon lead-ins, a chip after a section.
+        a, b = self.server.page("/a"), self.server.page("/b", OTHER)
+        self.write_answer(
+            "Intro sentence.\n\nWhat are the risks?\nTaking it can:\n\nRaise blood pressure.\n"
+            "Hurt kidneys.\n\nIs there an alternative?\nParacetamol may suit. It needs care too.\n\n"
+            "Avoid it regularly.\n\nnhs.uk\n+2\n\nLet me check\nI need two details:\n\n"
+            f"sources shown:\n{a}\n{b}\n")
+        fx, _ = self.run_ok()
+        self.assertEqual(self.urls_by_text(fx), {
+            "Intro sentence.": [], "What are the risks?": [], "Taking it can:": [],
+            "Raise blood pressure.": [], "Hurt kidneys.": [],
+            "Is there an alternative?": [],  # the heading itself gets no URLs
+            "Paracetamol may suit.": [a, b], "It needs care too.": [a, b],
+            "Avoid it regularly.": [a, b],
+            "Let me check": [], "I need two details:": [],
+        })
+
+    def test_heading_rule(self):
+        # A heading is one sentence ending in "?" or with no terminal punctuation.
+        # A line ending in ":" is a lead-in and belongs to the section above it.
+        a = self.server.page("/a")
+        cases = {
+            "Risks": True, "What now?": True, "## Risks": True, "**Risks**": True,
+            "Lead-in:": False, "A sentence.": False, "Wow!": False, "Two? Sentences.": False,
+            "It works. Does it?": False,
+            'He said "stop."': False, "Items, more,": False,
+        }
+        for line, heading in cases.items():
+            with self.subTest(line=line):
+                (self.fixtures / "0001.json").unlink(missing_ok=True)
+                self.write_answer(f"Before.\n{line}\nAfter.\nnhs.uk\n\nsources shown:\n{a}\n")
+                fx, _ = self.run_ok()
+                got = self.urls_by_text(fx)
+                self.assertEqual(got["After."], [a])
+                self.assertEqual(got["Before."], [] if heading else [a])
+
+    def test_second_chip_in_a_section_covers_from_the_same_heading(self):
+        a, b = self.server.page("/a"), self.server.page("/b", OTHER)
+        self.write_answer(
+            "Old point.\nNew section?\nFirst.\nAlso first.\nnhs.uk\nSecond.\nkidney.org\nAfter.\n\n"
+            f"sources shown:\n{a}\n{b}\n")
+        fx, out = self.run_ok()
+        self.assertEqual(self.urls_by_text(fx), {
+            "Old point.": [], "New section?": [], "First.": [a, b], "Also first.": [a, b],
+            "Second.": [a, b], "After.": []})
+        self.assertIn("warning: 2 citation chips", out)
 
     def test_chip_count_after_a_blank_line_and_number_lines_are_not_chips(self):
         a = self.server.page("/a")

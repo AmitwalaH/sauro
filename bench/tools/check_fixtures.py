@@ -16,8 +16,13 @@ stored file through the fixture's `sources` list, and every one must resolve.
 
 A claim with `label: null` is not yet labeled. It is counted and not checked, so a
 half-labeled fixture set still passes. A null label in a fixture marked reviewed fails.
+
+A `sources` entry with a `sha256` must still match its stored file byte for byte, whether or
+not a claim cites it. An editor or git can rewrite a page without changing its text, and
+then the stored page is no longer what was fetched.
 """
 
+import hashlib
 import json
 import sys
 from html.parser import HTMLParser
@@ -69,17 +74,30 @@ def source_files(fixture, fixture_path):
 
 
 def check_fixture(path):
-    """Return (claims, unlabeled claims, spans checked, failure lines) for one fixture file."""
+    """Return (claims, unlabeled claims, spans, hashes checked, failure lines) for one fixture."""
     try:
         fixture = json.loads(path.read_text(encoding="utf-8"))
         claims = fixture["claims"]
         files = source_files(fixture, path)
     except (ValueError, KeyError, TypeError) as e:
-        return 0, 0, 0, [f"{path.name}: cannot read fixture: {e}"]
+        return 0, 0, 0, 0, [f"{path.name}: cannot read fixture: {e}"]
 
     pages = {}  # file path to squashed text, so each page is parsed once
     failures = []
-    spans = unlabeled = 0
+    spans = unlabeled = hashes = 0
+
+    for s in fixture["sources"]:
+        if "sha256" not in s:
+            continue
+        stored = path.with_suffix(".sources") / s["file"]
+        where = f"{stored.parent.name}/{stored.name}"
+        if not stored.is_file():
+            failures.append(f"{path.name}: stored page missing: {where}")
+        elif hashlib.sha256(stored.read_bytes()).hexdigest() != s["sha256"]:
+            failures.append(f"{path.name}: {where} does not match its sha256, "
+                            "so it changed after it was fetched")
+        else:
+            hashes += 1
 
     for c in claims:
         cid = c.get("claim_id", f"{path.stem}-?")
@@ -123,7 +141,7 @@ def check_fixture(path):
         if not any(squash(span) in pages[files[u]] for u in urls):
             failures.append(f"{cid}: evidence_span not found in its cited page")
 
-    return len(claims), unlabeled, spans, failures
+    return len(claims), unlabeled, spans, hashes, failures
 
 
 def main(argv):
@@ -131,13 +149,14 @@ def main(argv):
     fixtures_dir = Path(argv[1]) if len(argv) > 1 else default
     files = sorted(fixtures_dir.glob("*.json"))
 
-    total_claims = total_unlabeled = total_spans = 0
+    total_claims = total_unlabeled = total_spans = total_hashes = 0
     failures = []
     for path in files:
-        n_claims, n_unlabeled, n_spans, fails = check_fixture(path)
+        n_claims, n_unlabeled, n_spans, n_hashes, fails = check_fixture(path)
         total_claims += n_claims
         total_unlabeled += n_unlabeled
         total_spans += n_spans
+        total_hashes += n_hashes
         failures.extend(fails)
 
     for line in failures:
@@ -145,7 +164,7 @@ def main(argv):
     # The counts are printed so a run that found nothing cannot be mistaken for a pass.
     print(
         f"checked {len(files)} fixtures, {total_claims} claims, {total_unlabeled} unlabeled, "
-        f"{total_spans} spans "
+        f"{total_spans} spans, {total_hashes} hashes "
         f"in {fixtures_dir}: {len(failures)} failures"
     )
     return 1 if failures else 0

@@ -44,5 +44,11 @@ citations on lines that are not claims. That is exactly the revisit trigger in
 Recommendation: 1, after the owner has saved two or three more Claude answers to confirm the
 chip shape is stable.
 
+## Note, 2026-11-03, task `chip-scope`
+Still open. Owner decision Q15 changed what a chip covers: every claim from the previous
+heading down to the chip, not only the sentence before it. `fetch_sources.py` applies that to
+the dotted chips it recognises today. Once this ticket is resolved and Claude's dotless chips
+are recognised, Q15 applies to them in the same way.
+
 ## Related
 `bench/README.md` "How the skeletons are made", task `fixture-tooling` Q11.

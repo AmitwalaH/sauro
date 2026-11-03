@@ -3,6 +3,7 @@
 Run from the repo root: python3 -m unittest bench/tools/test_check_fixtures.py
 """
 
+import hashlib
 import json
 import subprocess
 import sys
@@ -51,16 +52,21 @@ class CheckFixtures(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
-    def add(self, fid, claims, pages=None, sources=None, reviewed=False):
-        """Write a fixture. pages maps url to html; each is stored and listed in sources."""
+    def add(self, fid, claims, pages=None, sources=None, reviewed=False, hashed=False):
+        """Write a fixture. pages maps url to html; each is stored and listed in sources.
+
+        hashed adds a sha256 of each stored file, as fetch_sources.py writes it.
+        """
         pages = {URL_A: PAGE} if pages is None else pages
         src_dir = self.dir / f"{fid}.sources"
         listed = []
         for i, (url, html) in enumerate(pages.items()):
             name = f"page{i}.html"
             src_dir.mkdir(exist_ok=True)
-            (src_dir / name).write_text(html, encoding="utf-8")
+            (src_dir / name).write_bytes(html.encode("utf-8"))
             listed.append({"url": url, "file": name, "fetched_on": "2026-11-01"})
+            if hashed:
+                listed[-1]["sha256"] = hashlib.sha256(html.encode("utf-8")).hexdigest()
         fixture = {
             "id": fid,
             "source_model": "claude",
@@ -184,6 +190,48 @@ class CheckFixtures(unittest.TestCase):
             claim("0001-02", None, None, None),
         ], reviewed=True)
         self.assert_fails_naming("0001-02: label is null in a reviewed fixture")
+
+    # A stored page must still be the bytes that were fetched, when sources records a sha256.
+
+    def test_matching_sha256_passes_and_is_counted(self):
+        self.add("0001", [claim("0001-01", "supported", "Most people do not notice it.")],
+                 pages={URL_A: PAGE, URL_B: OTHER_PAGE}, hashed=True)
+        r = self.assert_passes()
+        self.assertIn("1 spans, 2 hashes", r.stdout)
+
+    def test_page_changed_after_fetch_fails_naming_the_file(self):
+        self.add("0001", [claim("0001-01", "supported", "Most people do not notice it.")],
+                 pages={URL_A: PAGE, URL_B: OTHER_PAGE}, hashed=True)
+        # An editor reformats the second page. Its text, and so every span, is unchanged.
+        page = self.dir / "0001.sources" / "page1.html"
+        page.write_bytes(b"\xef\xbb\xbf" + page.read_bytes().replace(b"<p>", b"<p>\n  "))
+        self.assert_fails_naming(
+            "0001.json: 0001.sources/page1.html does not match its sha256")
+
+    def test_line_ending_rewrite_fails(self):
+        # What git does with text=auto eol=lf to a page served with CRLF line endings.
+        crlf = PAGE.replace("\n", "\r\n")
+        self.add("0001", [claim("0001-01", "unverifiable", None, "not_in_source")],
+                 pages={URL_A: crlf}, hashed=True)
+        page = self.dir / "0001.sources" / "page0.html"
+        page.write_bytes(page.read_bytes().replace(b"\r\n", b"\n"))
+        self.assert_fails_naming("0001.sources/page0.html does not match its sha256")
+
+    def test_hash_is_checked_on_pages_no_claim_cites(self):
+        self.add("0001", [claim("0001-01", None, None, None)], hashed=True)
+        (self.dir / "0001.sources" / "page0.html").write_text("changed", encoding="utf-8")
+        self.assert_fails_naming("0001.sources/page0.html does not match its sha256")
+
+    def test_hashed_page_missing_on_disk_fails(self):
+        self.add("0001", [claim("0001-01", None, None, None)], hashed=True)
+        (self.dir / "0001.sources" / "page0.html").unlink()
+        self.assert_fails_naming("0001.json: stored page missing: 0001.sources/page0.html")
+
+    def test_source_without_sha256_is_not_hash_checked(self):
+        # The guide's sources shape has no sha256, so a hand-made entry is still valid.
+        self.add("0001", [claim("0001-01", "supported", "Most people do not notice it.")])
+        r = self.assert_passes()
+        self.assertIn("0 hashes", r.stdout)
 
     # A span is checked against the claim's own cited page, through the sources list.
 
