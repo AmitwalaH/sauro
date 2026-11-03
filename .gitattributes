@@ -1,2 +1,6 @@
 * text=auto eol=lf
 bench/fixtures/**/*.html -diff
+# Stored pages and fixture JSON are kept byte for byte, so their sha256 and the as-written
+# JSON still compare after a commit and a clone. Without this, CRLF becomes LF.
+bench/fixtures/*.sources/** -text
+bench/fixtures/*.json -text

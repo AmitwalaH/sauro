@@ -2,7 +2,7 @@
 
 **Date Discovered:** 2026-11-03
 **Severity:** HIGH
-**Status:** OPEN
+**Status:** RESOLVED
 **Label:** [decision]
 **Found by:** Claude Code, measured in a throwaway git repo on 2026-11-03
 **Filed by:** Claude Code
@@ -31,6 +31,13 @@ fresh checkout. This must be settled before any fixture with a CRLF page is comm
    instead of preventing it, and the stored page still differs from the fetched bytes.
 3. Store pages with a `.bin` extension. Git treats them as binary, but they stop opening as
    HTML.
+
+## Resolution
+Owner chose option 1 on 2026-11-03, and widened it to fixture JSON so the as-written and
+edited JSON compare byte for byte. `.gitattributes` now has `bench/fixtures/*.sources/** -text`
+and `bench/fixtures/*.json -text`. Measured in a throwaway repo: a CRLF stored page, a CRLF
+`answer.md` and a CRLF fixture JSON all came back from a fresh clone unchanged, while a CRLF
+`README.md` outside fixtures was still converted to LF.
 
 ## Related
 SAU-BENCH-BUG-20261103-stored-page-hash-unchecked. `.gitattributes` was not in task
