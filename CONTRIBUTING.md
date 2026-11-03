@@ -50,7 +50,8 @@ change touches, what you chose not to fix, and the check results.
 ## Commits
 
 Keep the message format in `PROJECT.md`. Nobody commits to `main` directly, including
-maintainers.
+maintainers. Pull requests are merged with a merge commit, so every commit on your branch lands
+on main as is; keep each one clean.
 
 ## Questions
 

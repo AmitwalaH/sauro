@@ -19,7 +19,11 @@ and other agents. See `SCOPE.md` for what it is not.
 - GitHub: `github.com/AmitwalaH/sauro`
 - Default branch: `main`. Nobody commits to `main` directly.
 - Task branches: `task/<YYYY-MM-DD>-<slug>`. One task file per branch.
+- Merge style: merge commits, never squash. Branch commits are permanent on main, so every
+  commit follows the message policy below. Decided by the owner 2026-11-03.
 - License: Apache-2.0
+- Merge style: merge commits, never squash. Branch commits are permanent on main, so every
+  commit follows the message policy below. Decided by the owner 2026-11-03.
 
 ## Commit policy for Claude Code (narrow, mechanical)
 
