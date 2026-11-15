@@ -39,6 +39,15 @@ answers does not justify a change yet.
 
 Revisit when: a second answer in the first 20 fixtures needs this merge.
 
+## Note, 2026-11-15, task `fixtures-0005-0008`
+The revisit condition is now met. The 0007 answer (Gemini) says "The rocket lifted off
+smoothly from Starbase, Texas at 5:47 p.m. EST (4:17 a.m. IST on Nov 14)." The splitter breaks
+after `p.m.` and after `a.m.`, so one sentence is three skeletons: `0007-07`, `-08` ("EST
+(4:17 a.m.") and `-09` ("IST on Nov 14)."). They are left as written and listed, not merged,
+under that task's rules. The grep from 2026-11-03 did not list `a.m.` or `p.m.`, and 0005 to
+0008 were empty stubs when it ran, which is why it found one hit, not two. Option 2 above
+would not catch this case; option 3 would, if the list holds `a.m.` and `p.m.`.
+
 ## Related
 `bench/README.md` "How the skeletons are made", SAU-BENCH-ENH-20261103-claude-chip-format.
 `fetch_sources.py` has uncommitted changes from other work on this branch at the time of filing.

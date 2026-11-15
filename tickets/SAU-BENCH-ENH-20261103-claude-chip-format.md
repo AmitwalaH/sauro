@@ -50,5 +50,15 @@ heading down to the chip, not only the sentence before it. `fetch_sources.py` ap
 the dotted chips it recognises today. Once this ticket is resolved and Claude's dotless chips
 are recognised, Q15 applies to them in the same way.
 
+## Note, 2026-11-15, task `fixtures-0005-0008`
+One more Claude answer, fixture 0006 (news). The chip shape is the same as in 0002: dotless
+site names (`europa`, `aiacto`, `dastra`, `hellogrowth`, `futureagi`, `regulation-ai`,
+`dawiso`), and a `Sources:` block of page titles. Two new shapes: a chip that is a page title
+(`EU AI Act compliance guide: what applies now - SureCloud`) followed by ` +2` with a leading
+space, and the same site chip twice for one URL (`hellogrowth`). The skeleton made 24 non-claim
+lines of 44. Each dotless chip matched exactly one `sources shown:` URL by host; `europa` is
+still a guess, since it names a site, not a page. Chip reach now follows
+SAU-BENCH-ENH-20261115-rule5-source-list-and-chip-reach.
+
 ## Related
 `bench/README.md` "How the skeletons are made", task `fixture-tooling` Q11.
