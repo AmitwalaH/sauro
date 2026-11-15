@@ -1,0 +1,182 @@
+{
+  "id": "0008",
+  "source_model": "perplexity",
+  "domain": "news",
+  "collected_on": "2026-11-15",
+  "answer_text": "India’s current GDP growth forecast for FY 2026–27 is about 7.0–7.1%. The Reserve Bank of India projects 7.1%, while the World Bank and OECD also forecast 7.1%; Moody’s recently revised its estimate to 7.0%.\n\nLatest forecasts\nForecaster\tFY 2026–27 real GDP growth\nReserve Bank of India\t7.1% \nWorld Bank\t7.1% \nOECD\t7.1% \nMoody’s Ratings\t7.0% \nWhy forecasts rose\nForecasters upgraded India’s outlook after strong first-quarter growth of 7.8%, resilient domestic demand, improving investment, and export strength.\n\nThe main risks are inflation and possible tighter monetary policy, which could weigh on private investment.\n\nsources shown:\nhttps://www.thehindubusinessline.com/economy/moodys-ups-growth-forecast-for-india-to-7-cautions-high-inflation/article71688879.ece\nhttps://theprint.in/economy/indian-economy-has-been-shining-star-in-otherwise-gloomy-world-niti-aayog-vc/3097209/\nhttps://www.pib.gov.in/FactsheetDetails.aspx?Id=150991&reg=3&lang=1\nhttps://economictimes.indiatimes.com/topic/Indian-GDP-growth-estimate/news\nhttps://ianslive.in/indias-gdp-growth-expected-to-reach-77-pc-in-q3-fy27-to-see-74-pc-growth-bofa--20261112133903\nnote: the interface showed \"Sources 20\"; these 5 were recovered. No inline markers in the pasted answer.\n",
+  "sources": [
+    {
+      "url": "https://www.thehindubusinessline.com/economy/moodys-ups-growth-forecast-for-india-to-7-cautions-high-inflation/article71688879.ece",
+      "file": "1.html",
+      "fetched_on": "2026-11-15",
+      "fetch_status": 200,
+      "final_url": "https://www.thehindubusinessline.com/economy/moodys-ups-growth-forecast-for-india-to-7-cautions-high-inflation/article71688879.ece",
+      "sha256": "badb6d8b8a1b8257e73ce81d80496416115ba88474fabc4c36c4408ca91f8ba7"
+    },
+    {
+      "url": "https://theprint.in/economy/indian-economy-has-been-shining-star-in-otherwise-gloomy-world-niti-aayog-vc/3097209/",
+      "file": "2.html",
+      "fetched_on": "2026-11-15",
+      "fetch_status": 200,
+      "final_url": "https://theprint.in/economy/indian-economy-has-been-shining-star-in-otherwise-gloomy-world-niti-aayog-vc/3097209/",
+      "sha256": "97cd14326111649a4daa0710d69e4d771a21b1db5a5b4bb37ec1d5167b3f50af"
+    },
+    {
+      "url": "https://economictimes.indiatimes.com/topic/Indian-GDP-growth-estimate/news",
+      "file": "4.html",
+      "fetched_on": "2026-11-15",
+      "fetch_status": 200,
+      "final_url": "https://economictimes.indiatimes.com/topic/Indian-GDP-growth-estimate/news",
+      "sha256": "27bc9f912e17abe3bb9d78b6a653bc152770fff36e27d2dd8b0c65d253ba1dac"
+    },
+    {
+      "url": "https://ianslive.in/indias-gdp-growth-expected-to-reach-77-pc-in-q3-fy27-to-see-74-pc-growth-bofa--20261112133903",
+      "file": "5.html",
+      "fetched_on": "2026-11-15",
+      "fetch_status": 200,
+      "final_url": "https://ianslive.in/indias-gdp-growth-expected-to-reach-77-pc-in-q3-fy27-to-see-74-pc-growth-bofa--20261112133903",
+      "sha256": "f2d75fae482054d34a6a6c332189ec177483173e4b5545b0ee4bcb2496a1c457"
+    }
+  ],
+  "fetch_failures": [
+    {
+      "url": "https://www.pib.gov.in/FactsheetDetails.aspx?Id=150991&reg=3&lang=1",
+      "fetched_on": "2026-11-15",
+      "fetch_status": 403,
+      "final_url": "https://www.pib.gov.in/FactsheetDetails.aspx?Id=150991&reg=3&lang=1",
+      "reason": "http_error",
+      "bytes": 400,
+      "file": "3.html"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "0008-01",
+      "text": "India’s current GDP growth forecast for FY 2026–27 is about 7.0–7.1%.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0008-02",
+      "text": "The Reserve Bank of India projects 7.1%, while the World Bank and OECD also forecast 7.1%; Moody’s recently revised its estimate to 7.0%.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0008-03",
+      "text": "Latest forecasts",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0008-04",
+      "text": "Forecaster\tFY 2026–27 real GDP growth",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0008-05",
+      "text": "Reserve Bank of India\t7.1%",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0008-06",
+      "text": "World Bank\t7.1%",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0008-07",
+      "text": "OECD\t7.1%",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0008-08",
+      "text": "Moody’s Ratings\t7.0%",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0008-09",
+      "text": "Why forecasts rose",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0008-10",
+      "text": "Forecasters upgraded India’s outlook after strong first-quarter growth of 7.8%, resilient domestic demand, improving investment, and export strength.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0008-11",
+      "text": "The main risks are inflation and possible tighter monetary policy, which could weigh on private investment.",
+      "cited_urls": [
+        "https://www.thehindubusinessline.com/economy/moodys-ups-growth-forecast-for-india-to-7-cautions-high-inflation/article71688879.ece",
+        "https://theprint.in/economy/indian-economy-has-been-shining-star-in-otherwise-gloomy-world-niti-aayog-vc/3097209/",
+        "https://www.pib.gov.in/FactsheetDetails.aspx?Id=150991&reg=3&lang=1",
+        "https://economictimes.indiatimes.com/topic/Indian-GDP-growth-estimate/news",
+        "https://ianslive.in/indias-gdp-growth-expected-to-reach-77-pc-in-q3-fy27-to-see-74-pc-growth-bofa--20261112133903"
+      ],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    }
+  ],
+  "reviewed": false
+}

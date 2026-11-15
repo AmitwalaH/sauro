@@ -1,0 +1,570 @@
+{
+  "id": "0006",
+  "source_model": "claude",
+  "domain": "news",
+  "collected_on": "2026-11-15",
+  "answer_text": "The EU AI Act is in force and largely being enforced, but its high-risk rules were pushed back by an amending law this summer.\n\nThe amendment (the “AI Omnibus”)\nThe Commission proposed targeted amendments to the AI Act in November 2025 as part of its digital simplification package; they were adopted in June 2026 and entered into force on 27 July 2026. The law is Regulation (EU) 2026/1744, published in the Official Journal on July 24, 2026. It went through a provisional trilogue agreement on May 7, 2026, a European Parliament vote on June 16, and Council adoption on June 29. \neuropa\naiacto\n\nWhat applies now\n\nBans and transparency: Bans have applied since February 2025, and transparency duties since August 2026. The Omnibus did not postpone the general transparency obligations in Article 50. In practice that means making chatbots recognisable as AI and labelling deepfakes. \nEU AI Act compliance guide: what applies now - SureCloud\n +2\nEnforcement: Since 2 August 2026, the AI Office and national authorities have been enforcing the Act. \neuropa\nGeneral-purpose AI models: these obligations have applied since August 2025 (from my own knowledge; the sources above don’t cover them).\nWhat’s coming\n\n2 December 2026 (in about two weeks): A full EU-wide ban takes effect on AI systems built mainly to generate non-consensual intimate images, such as “nudification” apps. Companies offering them must comply by that date. The prohibition also covers AI used to generate CSAM. \ndastra\n2 December 2027: high-risk rules for standalone Annex III systems, such as systems that select job applicants or assess creditworthiness. \nhellogrowth\n2 August 2028: rules for AI in Annex I products. \nfutureagi\nSandboxes: national regulatory sandboxes were deferred from 2 August 2026 to 2 August 2027. \nregulation-ai\nHow big a change is this?\nCommentators mostly see it as a delay rather than a rollback. Gibson Dunn calls it a deferral, not a dismantling, since the law’s structure and core obligations remain. There were some substantive changes, though: the AI literacy obligation was softened, and the new prohibitions were added. \nhellogrowth\n\nStill pending: The wider Digital Omnibus also proposes changes to the GDPR, ePrivacy rules and the Data Act. That part is still a proposal at first reading and is the most contested, with privacy and digital-rights groups warning it could weaken key protections. \ndawiso\n\nSources:\n\nEuropean approach to artificial intelligence – European Commission\nDigital Omnibus Adopted: AI Act High-Risk Delayed to 2027 – AIacto\nEU AI Act compliance guide – SureCloud\nInside the EU’s AI Omnibus Deal – Dastra\nEU AI Act 2026: a delay for high risk, not for transparency – Hello Growth\nWhat Is the EU AI Omnibus? – Dawiso\nEU AI Act Timeline After the Digital Omnibus – Future AGI\nEU AI Act Digital Omnibus 2026 – regulation-ai.eu\n\nsources shown:\nhttps://digital-strategy.ec.europa.eu/en/policies/european-approach-artificial-intelligence\nhttps://www.aiacto.eu/en/blog/digital-omnibus-ai-act-report-2027\nhttps://www.surecloud.com/blog-hub/eu-ai-act-compliance-guide-what-applies-now\nhttps://www.dastra.eu/en/blog/simpler-safer-stricter-where-it-counts-inside-the-eu-ai-omnibus-deal/60025\nhttps://hellogrowth.ai/en/blog/eu-ai-act-2026-omnibus-labelling-ai-content\nhttps://www.dawiso.com/glossary/ai-omnibus\nhttps://futureagi.com/blog/eu-ai-act-timeline-digital-omnibus-2027/\nhttps://www.regulation-ai.eu/en/omnibus/\n",
+  "sources": [
+    {
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/european-approach-artificial-intelligence",
+      "file": "1.html",
+      "fetched_on": "2026-11-15",
+      "fetch_status": 200,
+      "final_url": "https://digital-strategy.ec.europa.eu/en/policies/european-approach-artificial-intelligence",
+      "sha256": "d2ac72eb7744ae48df04ba274fc9465cb6fa741b9cedbb2537e09add67db6972"
+    },
+    {
+      "url": "https://www.aiacto.eu/en/blog/digital-omnibus-ai-act-report-2027",
+      "file": "2.html",
+      "fetched_on": "2026-11-15",
+      "fetch_status": 200,
+      "final_url": "https://www.aiacto.eu/en/blog/digital-omnibus-ai-act-report-2027",
+      "sha256": "60f853266e83bf84948f04f42ff47a53525692397a8a3f7d0cd84bb4c9433875"
+    },
+    {
+      "url": "https://www.surecloud.com/blog-hub/eu-ai-act-compliance-guide-what-applies-now",
+      "file": "3.html",
+      "fetched_on": "2026-11-15",
+      "fetch_status": 200,
+      "final_url": "https://www.surecloud.com/blog-hub/eu-ai-act-compliance-guide-what-applies-now",
+      "sha256": "6f3203d9ec9116041e74e7ccf0740052c4cf56a654be96aaddee2a604d883983"
+    },
+    {
+      "url": "https://www.dastra.eu/en/blog/simpler-safer-stricter-where-it-counts-inside-the-eu-ai-omnibus-deal/60025",
+      "file": "4.html",
+      "fetched_on": "2026-11-15",
+      "fetch_status": 200,
+      "final_url": "https://www.dastra.eu/en/blog/simpler-safer-stricter-where-it-counts-inside-the-eu-ai-omnibus-deal/60025",
+      "sha256": "ab0c3b05c59cca33314d4afb93c6158224ccdfaac8e6ce497a4ba29123bce44d"
+    },
+    {
+      "url": "https://hellogrowth.ai/en/blog/eu-ai-act-2026-omnibus-labelling-ai-content",
+      "file": "5.html",
+      "fetched_on": "2026-11-15",
+      "fetch_status": 200,
+      "final_url": "https://hellogrowth.ai/en/blog/eu-ai-act-2026-omnibus-labelling-ai-content",
+      "sha256": "1c2bd1370c1f1ca8b772e2701bd1ca833f878eb25a4ba9ebdcf088f7675486fc"
+    },
+    {
+      "url": "https://www.dawiso.com/glossary/ai-omnibus",
+      "file": "6.html",
+      "fetched_on": "2026-11-15",
+      "fetch_status": 200,
+      "final_url": "https://www.dawiso.com/glossary/ai-omnibus",
+      "sha256": "014b661e438f5e3431b50565fd54c71a0013266f7699f76727f784ba2fa8a646"
+    },
+    {
+      "url": "https://futureagi.com/blog/eu-ai-act-timeline-digital-omnibus-2027/",
+      "file": "7.html",
+      "fetched_on": "2026-11-15",
+      "fetch_status": 200,
+      "final_url": "https://futureagi.com/blog/eu-ai-act-timeline-digital-omnibus-2027/",
+      "sha256": "80c67b4e58111900681ed64f100794b37479556cd2aefcdd231c104c2a165efc"
+    },
+    {
+      "url": "https://www.regulation-ai.eu/en/omnibus/",
+      "file": "8.html",
+      "fetched_on": "2026-11-15",
+      "fetch_status": 200,
+      "final_url": "https://www.regulation-ai.eu/en/omnibus/",
+      "sha256": "8ee010a1867de095015f111cde2ab54edc6d4a8539e865f07046dce659b172c6"
+    }
+  ],
+  "fetch_failures": [],
+  "claims": [
+    {
+      "claim_id": "0006-01",
+      "text": "The EU AI Act is in force and largely being enforced, but its high-risk rules were pushed back by an amending law this summer.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-02",
+      "text": "The amendment (the “AI Omnibus”)",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-03",
+      "text": "The Commission proposed targeted amendments to the AI Act in November 2025 as part of its digital simplification package; they were adopted in June 2026 and entered into force on 27 July 2026.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-04",
+      "text": "The law is Regulation (EU) 2026/1744, published in the Official Journal on July 24, 2026.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-05",
+      "text": "It went through a provisional trilogue agreement on May 7, 2026, a European Parliament vote on June 16, and Council adoption on June 29.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-06",
+      "text": "europa",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-07",
+      "text": "aiacto",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-08",
+      "text": "What applies now",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-09",
+      "text": "Bans and transparency: Bans have applied since February 2025, and transparency duties since August 2026.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-10",
+      "text": "The Omnibus did not postpone the general transparency obligations in Article 50.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-11",
+      "text": "In practice that means making chatbots recognisable as AI and labelling deepfakes.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-12",
+      "text": "EU AI Act compliance guide: what applies now - SureCloud",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-13",
+      "text": "+2",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-14",
+      "text": "Enforcement: Since 2 August 2026, the AI Office and national authorities have been enforcing the Act.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-15",
+      "text": "europa",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-16",
+      "text": "General-purpose AI models: these obligations have applied since August 2025 (from my own knowledge; the sources above don’t cover them).",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-17",
+      "text": "What’s coming",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-18",
+      "text": "2 December 2026 (in about two weeks): A full EU-wide ban takes effect on AI systems built mainly to generate non-consensual intimate images, such as “nudification” apps.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-19",
+      "text": "Companies offering them must comply by that date.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-20",
+      "text": "The prohibition also covers AI used to generate CSAM.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-21",
+      "text": "dastra",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-22",
+      "text": "2 December 2027: high-risk rules for standalone Annex III systems, such as systems that select job applicants or assess creditworthiness.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-23",
+      "text": "hellogrowth",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-24",
+      "text": "2 August 2028: rules for AI in Annex I products.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-25",
+      "text": "futureagi",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-26",
+      "text": "Sandboxes: national regulatory sandboxes were deferred from 2 August 2026 to 2 August 2027.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-27",
+      "text": "regulation-ai",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-28",
+      "text": "How big a change is this?",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-29",
+      "text": "Commentators mostly see it as a delay rather than a rollback.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-30",
+      "text": "Gibson Dunn calls it a deferral, not a dismantling, since the law’s structure and core obligations remain.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-31",
+      "text": "There were some substantive changes, though: the AI literacy obligation was softened, and the new prohibitions were added.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-32",
+      "text": "hellogrowth",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-33",
+      "text": "Still pending: The wider Digital Omnibus also proposes changes to the GDPR, ePrivacy rules and the Data Act.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-34",
+      "text": "That part is still a proposal at first reading and is the most contested, with privacy and digital-rights groups warning it could weaken key protections.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-35",
+      "text": "dawiso",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-36",
+      "text": "Sources:",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-37",
+      "text": "European approach to artificial intelligence – European Commission",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-38",
+      "text": "Digital Omnibus Adopted: AI Act High-Risk Delayed to 2027 – AIacto",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-39",
+      "text": "EU AI Act compliance guide – SureCloud",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-40",
+      "text": "Inside the EU’s AI Omnibus Deal – Dastra",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-41",
+      "text": "EU AI Act 2026: a delay for high risk, not for transparency – Hello Growth",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-42",
+      "text": "What Is the EU AI Omnibus? – Dawiso",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-43",
+      "text": "EU AI Act Timeline After the Digital Omnibus – Future AGI",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    },
+    {
+      "claim_id": "0006-44",
+      "text": "EU AI Act Digital Omnibus 2026 – regulation-ai.eu",
+      "cited_urls": [
+        "https://digital-strategy.ec.europa.eu/en/policies/european-approach-artificial-intelligence",
+        "https://www.aiacto.eu/en/blog/digital-omnibus-ai-act-report-2027",
+        "https://www.surecloud.com/blog-hub/eu-ai-act-compliance-guide-what-applies-now",
+        "https://www.dastra.eu/en/blog/simpler-safer-stricter-where-it-counts-inside-the-eu-ai-omnibus-deal/60025",
+        "https://hellogrowth.ai/en/blog/eu-ai-act-2026-omnibus-labelling-ai-content",
+        "https://www.dawiso.com/glossary/ai-omnibus",
+        "https://futureagi.com/blog/eu-ai-act-timeline-digital-omnibus-2027/",
+        "https://www.regulation-ai.eu/en/omnibus/"
+      ],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": null,
+      "hard": false
+    }
+  ],
+  "reviewed": false
+}
