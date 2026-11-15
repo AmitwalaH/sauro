@@ -513,7 +513,7 @@ class Rerun(FetchSourcesBase):
         self.assertEqual((self.src / "1.html").read_bytes(), ARTICLE)
         self.assertEqual((self.src / "2.html").read_bytes(), OTHER)
 
-    def test_reviewed_fixture_is_never_written_or_fetched(self):
+    def test_reviewed_fixture_with_no_absent_page_is_refused_and_nothing_fetched(self):
         a = self.server.page("/a", status=503)
         self.write_answer(f"One ({a}).\n")
         fx, _ = self.run_ok()
