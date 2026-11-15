@@ -3,8 +3,15 @@
 This is the rule in bench/LABELING.md, "Quality rules": every supported, partial and
 contradicted label has a non-null evidence_span that appears verbatim in the stored page.
 
-Usage: python3 bench/tools/check_fixtures.py [fixtures_dir]
-Exit 0 when every span is found, 1 otherwise. Reads only. Never writes a fixture.
+Usage: python3 bench/tools/check_fixtures.py [fixtures_dir] [--require-pages]
+Exit 0 when nothing failed, 1 otherwise. Reads only. Never writes a fixture.
+
+Stored pages are not in git (owner decision Q25), so a clone, and CI, has the fixture JSON
+and no pages. A page listed in `sources` but absent from disk is counted, not failed: its
+hash check is skipped, and so is a span check that could only pass on that page. A span
+found in another cited page that is present still counts as checked. Every check that needs
+no page still runs. `--require-pages` makes each absent page a failure; the labeler runs it
+before committing a fixture. A page that is present is checked in full either way.
 
 What "verbatim" means here, because a labeler copies from the page as a browser shows it:
 - The page is compared as text: tags removed, entities decoded, script and style dropped.
@@ -22,9 +29,11 @@ not a claim cites it. An editor or git can rewrite a page without changing its t
 then the stored page is no longer what was fetched.
 """
 
+import argparse
 import hashlib
 import json
 import sys
+from dataclasses import dataclass
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -73,31 +82,53 @@ def source_files(fixture, fixture_path):
     return {s["url"]: sources_dir / s["file"] for s in fixture["sources"]}
 
 
-def check_fixture(path):
-    """Return (claims, unlabeled claims, spans, hashes checked, failure lines) for one fixture."""
+@dataclass
+class Counts:
+    claims: int = 0
+    unlabeled: int = 0
+    spans: int = 0
+    hashes: int = 0
+    absent: int = 0  # pages listed in sources but not on disk
+    unchecked: int = 0  # spans that could only be checked on an absent page
+
+    def add(self, other):
+        for name in vars(self):
+            setattr(self, name, getattr(self, name) + getattr(other, name))
+
+
+def where(file):
+    """A stored page's name as the failure lines show it, such as 0001.sources/2.html."""
+    return f"{file.parent.name}/{file.name}"
+
+
+def check_fixture(path, require_pages=False):
+    """Check one fixture. Return a Counts and the failure lines."""
+    counts = Counts()
     try:
         fixture = json.loads(path.read_text(encoding="utf-8"))
         claims = fixture["claims"]
         files = source_files(fixture, path)
     except (ValueError, KeyError, TypeError) as e:
-        return 0, 0, 0, 0, [f"{path.name}: cannot read fixture: {e}"]
+        return counts, [f"{path.name}: cannot read fixture: {e}"]
 
     pages = {}  # file path to squashed text, so each page is parsed once
     failures = []
-    spans = unlabeled = hashes = 0
+    counts.claims = len(claims)
 
     for s in fixture["sources"]:
+        stored = path.with_suffix(".sources") / s["file"]
+        if not stored.is_file():
+            counts.absent += 1
+            if require_pages:
+                failures.append(f"{path.name}: stored page missing: {where(stored)}")
+            continue
         if "sha256" not in s:
             continue
-        stored = path.with_suffix(".sources") / s["file"]
-        where = f"{stored.parent.name}/{stored.name}"
-        if not stored.is_file():
-            failures.append(f"{path.name}: stored page missing: {where}")
-        elif hashlib.sha256(stored.read_bytes()).hexdigest() != s["sha256"]:
-            failures.append(f"{path.name}: {where} does not match its sha256, "
+        if hashlib.sha256(stored.read_bytes()).hexdigest() != s["sha256"]:
+            failures.append(f"{path.name}: {where(stored)} does not match its sha256, "
                             "so it changed after it was fetched")
         else:
-            hashes += 1
+            counts.hashes += 1
 
     for c in claims:
         cid = c.get("claim_id", f"{path.stem}-?")
@@ -105,7 +136,7 @@ def check_fixture(path):
         span = c.get("evidence_span")
 
         if label is None:
-            unlabeled += 1
+            counts.unlabeled += 1
             if fixture.get("reviewed") is True:
                 failures.append(f"{cid}: label is null in a reviewed fixture")
             continue
@@ -120,7 +151,7 @@ def check_fixture(path):
             failures.append(f"{cid}: evidence_span is empty")
             continue
 
-        spans += 1
+        counts.spans += 1
         urls = c.get("cited_urls") or []
         if not urls:
             failures.append(f"{cid}: has an evidence_span but no cited URL")
@@ -129,43 +160,49 @@ def check_fixture(path):
         if unlisted:
             failures.append(f"{cid}: cited URL not in sources: {unlisted[0]}")
             continue
+        present = [files[u] for u in urls if files[u].is_file()]
         missing = [files[u] for u in urls if not files[u].is_file()]
-        if missing:
-            where = f"{missing[0].parent.name}/{missing[0].name}"
-            failures.append(f"{cid}: stored page missing: {where}")
+        for f in present:
+            if f not in pages:
+                html = f.read_text(encoding="utf-8", errors="replace")
+                pages[f] = squash(page_text(html))
+        if any(squash(span) in pages[f] for f in present):
             continue
-        for u in urls:
-            if files[u] not in pages:
-                html = files[u].read_text(encoding="utf-8", errors="replace")
-                pages[files[u]] = squash(page_text(html))
-        if not any(squash(span) in pages[files[u]] for u in urls):
+        if not missing:
             failures.append(f"{cid}: evidence_span not found in its cited page")
+        elif require_pages:
+            failures.append(f"{cid}: stored page missing: {where(missing[0])}")
+        else:
+            # The span may be on the absent page, so this is no evidence either way.
+            counts.unchecked += 1
 
-    return len(claims), unlabeled, spans, hashes, failures
+    return counts, failures
 
 
 def main(argv):
     default = Path(__file__).resolve().parent.parent / "fixtures"
-    fixtures_dir = Path(argv[1]) if len(argv) > 1 else default
-    files = sorted(fixtures_dir.glob("*.json"))
+    parser = argparse.ArgumentParser(description="Check fixture labels and evidence spans.")
+    parser.add_argument("fixtures_dir", nargs="?", type=Path, default=default)
+    parser.add_argument("--require-pages", action="store_true",
+                        help="fail on any stored page that is absent; run before a fixture commit")
+    args = parser.parse_args(argv[1:])
+    files = sorted(args.fixtures_dir.glob("*.json"))
 
-    total_claims = total_unlabeled = total_spans = total_hashes = 0
+    total = Counts()
     failures = []
     for path in files:
-        n_claims, n_unlabeled, n_spans, n_hashes, fails = check_fixture(path)
-        total_claims += n_claims
-        total_unlabeled += n_unlabeled
-        total_spans += n_spans
-        total_hashes += n_hashes
+        counts, fails = check_fixture(path, args.require_pages)
+        total.add(counts)
         failures.extend(fails)
 
     for line in failures:
         print(f"FAIL {line}")
-    # The counts are printed so a run that found nothing cannot be mistaken for a pass.
+    # The counts are printed so a run that found nothing cannot be mistaken for a pass, and
+    # so a run that could not see the pages says how much it did not check.
     print(
-        f"checked {len(files)} fixtures, {total_claims} claims, {total_unlabeled} unlabeled, "
-        f"{total_spans} spans, {total_hashes} hashes "
-        f"in {fixtures_dir}: {len(failures)} failures"
+        f"checked {len(files)} fixtures, {total.claims} claims, {total.unlabeled} unlabeled, "
+        f"{total.spans} spans, {total.hashes} hashes, {total.absent} pages absent, "
+        f"{total.unchecked} spans unchecked in {args.fixtures_dir}: {len(failures)} failures"
     )
     return 1 if failures else 0
 
