@@ -22,5 +22,13 @@ is wrong without anyone seeing it.
    one place in that script. Recommended.
 2. Leave it to review.
 
+## Note, 2026-11-15, task `pages-local` (owner decision C2)
+The same gap exists for `reason_code`. `LABELING.md`, "Reason codes", says which codes go with
+which label (for example `hedge_dropped` only with partial, `other` with any). `check_fixtures.py`
+never reads `reason_code`, so `supported` with `negated` passes. Measured on 2026-11-15: all 45
+claims in fixtures 0001 to 0004 follow the table, so the check would pass today. Fix it with
+this ticket, one rule for all three fields: each value must come from the sets in `LABELING.md`.
+
 ## Related
-`bench/LABELING.md` "What a fixture is" and "What the first 100 fixtures should cover".
+`bench/LABELING.md` "What a fixture is", "Reason codes" and "What the first 100 fixtures
+should cover".

@@ -10,11 +10,41 @@ contract. This file only covers the tooling.
 3. It fetches every URL once, stores each page in `0001.sources/`, and writes `0001.json`.
 4. Read what it prints. Every failed fetch is listed, and is also in `fetch_failures`.
 5. Commit `0001.json` as written, before any edit, so `git diff` later shows what you changed.
+   Stage it by name with `0001.sources/answer.md`. The stored pages are never committed.
 6. Open `0001.json`. Merge, split and drop claims, and fix `cited_urls`, under `LABELING.md`.
 7. Label every claim under `LABELING.md`. The script writes `label: null` and nothing else.
-8. Run `python3 bench/tools/check_fixtures.py`. It fails on any span not in its cited page.
+8. Run `python3 bench/tools/check_fixtures.py --require-pages`. It fails on any span not in
+   its cited page, and on any stored page that is missing. It must pass before every commit
+   that adds or changes a fixture.
 9. It reports unlabeled claims as a count, not a failure, so a half-done set passes CI.
 10. A null label in a fixture marked `"reviewed": true` fails.
+
+## Stored pages stay local
+
+The pages in `0001.sources/` are copies of other people's websites. They are not committed to
+this public repo (owner decision Q25, ticket `SAU-BENCH-ENH-20261115-pages-local`). The repo
+holds `0001.json` and `answer.md`. The JSON records each page's URL, fetch date and sha256,
+and every evidence span. `.gitignore` keeps everything else in `*.sources/` out of git.
+
+So CI has no pages. On CI, `check_fixtures.py` still runs every check that needs no page:
+known label, a span where the label needs one, cited URLs listed in `sources`, no null label
+in a reviewed fixture. It cannot check a span against its page or a page against its sha256.
+It counts what it skipped, as `N pages absent, N spans unchecked`, and passes. That is why
+step 8 runs with `--require-pages` on the labeler's machine, where the pages are.
+
+To get the pages on a fresh clone, run `fetch_sources.py` on the fixture directory, as in
+step 2. It fetches each page listed in `sources` that is missing, stores it under its
+recorded file name, and prints whether it matches the recorded sha256. It writes only the
+page, never the JSON, so it works on a reviewed fixture too.
+
+A refetched page usually does not match. Sites change their HTML all the time, often only in
+scripts, ads or tracking. Measured on 2026-11-15: of 16 pages fetched on 2026-11-03, 15 no
+longer matched byte for byte, yet all 32 evidence spans were still found in them. A mismatch
+means the page is not the one that was labeled. `check_fixtures.py` then fails on its hash,
+and that failure is correct. Do not relabel against a refetched page, and never change a
+recorded sha256 to match. A span that is still found tells you that passage is still there,
+not that the page is the same. Delete the refetched page to go back to "absent". Only the
+labeler's own copy can pass `--require-pages`, so keep it backed up.
 
 ## answer.md
 
@@ -83,8 +113,11 @@ as text, so a span copied from it will not match.
 ## Running it again
 
 A rerun fetches only URLs with no stored page yet, which retries the ones that failed. It never
-fetches a stored page again, because your labels were made against it. It never touches
-`claims` once `0001.json` exists, and it refuses to write a fixture marked reviewed.
+fetches a stored page again, because your labels were made against it. A page listed in
+`sources` but missing from disk is fetched back under its recorded name, as above. It never
+touches `claims` once `0001.json` exists. It leaves `0001.json` alone when nothing new was
+fetched. On a fixture marked reviewed it only puts back missing pages and never writes the
+JSON.
 
 ## The second labeling pass
 
