@@ -537,6 +537,85 @@ class Rerun(FetchSourcesBase):
         self.assertRegex(out, r"0 fetched")
 
 
+class Refetch(FetchSourcesBase):
+    """Q25: stored pages are not in git, so a clone has the JSON and no pages. A rerun puts
+    each absent page back under its recorded file name and never writes the JSON."""
+
+    def fetch_then_clone(self, answer, reviewed=False, remove=("1.html",)):
+        """Fetch once, then make the folder look like a fresh clone."""
+        self.write_answer(answer)
+        fx, _ = self.run_ok()
+        fx["reviewed"] = reviewed
+        path = self.fixtures / "0001.json"
+        # Compact, as a hand edit might leave it, so any rewrite by the script shows in bytes.
+        path.write_text(json.dumps(fx), encoding="utf-8")
+        for name in remove:
+            (self.src / name).unlink()
+        return path, path.read_bytes()
+
+    def test_absent_page_comes_back_under_its_recorded_name(self):
+        a = self.server.page("/a")
+        path, before = self.fetch_then_clone(f"One ({a}).\n")
+        _, out = self.run_ok()
+        self.assertEqual(self.server.hits["/a"], 2)
+        self.assertEqual((self.src / "1.html").read_bytes(), ARTICLE)
+        self.assertIn("refetched 1.html: matches its recorded sha256", out)
+        self.assertEqual(path.read_bytes(), before)
+
+    def test_changed_page_is_stored_and_its_recorded_sha256_is_kept(self):
+        a = self.server.page("/a")
+        path, before = self.fetch_then_clone(f"One ({a}).\n")
+        self.server.page("/a", OTHER)
+        _, out = self.run_ok()
+        self.assertEqual((self.src / "1.html").read_bytes(), OTHER)
+        self.assertIn("refetched 1.html: differs from its recorded sha256", out)
+        # The recorded hash says what was labeled. It must never follow the new page.
+        self.assertEqual(path.read_bytes(), before)
+        self.assertEqual(self.fixture()["sources"][0]["sha256"], hashlib.sha256(ARTICLE).hexdigest())
+
+    def test_failed_refetch_writes_nothing(self):
+        a = self.server.page("/a")
+        path, before = self.fetch_then_clone(f"One ({a}).\n")
+        self.server.page("/a", status=404)
+        _, out = self.run_ok()
+        self.assertIn(f"refetch failed: {a}: http_error (HTTP 404)", out)
+        self.assertEqual(sorted(p.name for p in self.src.iterdir()), ["answer.md"])
+        self.assertEqual(path.read_bytes(), before)
+
+    def test_present_page_is_not_refetched_beside_an_absent_one(self):
+        a, b = self.server.page("/a"), self.server.page("/b")
+        self.fetch_then_clone(f"One ({a}). Two ({b}).\n")
+        self.server.page("/b", OTHER)
+        self.run_ok()
+        self.assertEqual(self.server.hits["/b"], 1)
+        self.assertEqual((self.src / "2.html").read_bytes(), ARTICLE)
+
+    def test_reviewed_fixture_gets_its_absent_page_and_nothing_else(self):
+        a, gone = self.server.page("/a"), self.server.page("/gone", status=503)
+        path, before = self.fetch_then_clone(f"One ({a}). Two ({gone}).\n", reviewed=True)
+        self.server.page("/gone")
+        code, out = self.run_script()
+        self.assertEqual(code, 0, out)
+        self.assertEqual((self.src / "1.html").read_bytes(), ARTICLE)
+        self.assertEqual(self.server.hits["/gone"], 1)  # a failed URL is not retried
+        self.assertEqual(path.read_bytes(), before)
+        self.assertIn("reviewed", out)
+
+    def test_file_name_with_a_folder_is_not_refetched(self):
+        # A fixture from a pull request decides where a refetch writes. Keep it in the folder.
+        a = self.server.page("/a")
+        path, _ = self.fetch_then_clone(f"One ({a}).\n")
+        fx = json.loads(path.read_text(encoding="utf-8"))
+        fx["sources"][0]["file"] = "../escape.html"
+        path.write_text(json.dumps(fx), encoding="utf-8")
+        before = path.read_bytes()
+        _, out = self.run_ok()
+        self.assertFalse((self.fixtures / "escape.html").exists())
+        self.assertEqual(self.server.hits["/a"], 1)
+        self.assertIn("not refetched: '../escape.html' is not a plain file name", out)
+        self.assertEqual(path.read_bytes(), before)
+
+
 class Script(unittest.TestCase):
     def test_runs_as_a_script_from_any_directory(self):
         # The README tells people to run it by path, so the import of check_fixtures must work.

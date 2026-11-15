@@ -14,6 +14,11 @@ A rerun fetches only URLs that have no stored page yet, including ones that fail
 It never fetches a stored page again, never touches `claims` once the fixture exists, and
 never writes a fixture marked reviewed.
 
+Stored pages are not in git (owner decision Q25), so a clone has the JSON and no pages. A
+rerun puts each page listed in `sources` but absent from disk back under its recorded file
+name, reviewed fixture or not. It writes only the page, never the JSON: the recorded sha256
+stays, because it says what was labeled. It prints whether the new page matches it.
+
 The sentence split is crude on purpose, because the labeler merges and splits by hand: a
 break after ". ", "? " or "! " followed by a capital, and at every line break.
 """
@@ -236,6 +241,38 @@ def write_json(path, data):
     os.replace(tmp, path)
 
 
+def refetch_absent(src_dir, fixture):
+    """Put back each page listed in sources whose file is absent. Returns (absent, lines).
+
+    Only the page is written. A page that now differs from its recorded sha256 is still
+    stored, so check_fixtures.py reports it instead of the labeler never finding out.
+    """
+    absent, lines = 0, []
+    for s in fixture["sources"]:
+        name = s["file"]
+        if (src_dir / name).exists():
+            continue
+        absent += 1
+        # The fixture JSON says where to write, and it may come from a pull request.
+        if Path(name).name != name:
+            lines.append(f"not refetched: {name!r} is not a plain file name")
+            continue
+        status, _, _, body, reason = fetch(s["url"])
+        if reason is not None:
+            lines.append(f"refetch failed: {s['url']}: {reason}"
+                         + (f" (HTTP {status})" if status else ""))
+            continue
+        (src_dir / name).write_bytes(body)
+        if "sha256" not in s:
+            verdict = "no sha256 recorded to compare"
+        elif hashlib.sha256(body).hexdigest() == s["sha256"]:
+            verdict = "matches its recorded sha256"
+        else:
+            verdict = "differs from its recorded sha256, so it is not the page that was labeled"
+        lines.append(f"refetched {name}: {verdict}")
+    return absent, lines
+
+
 def run(src_dir):
     """Build or update the fixture for one <id>.sources directory. Returns the output lines."""
     if src_dir.suffix != ".sources":
@@ -244,13 +281,21 @@ def run(src_dir):
     fixture_path = src_dir.with_suffix(".json")
     header, answer = read_answer(src_dir / "answer.md")
 
-    if fixture_path.exists():
+    is_new = not fixture_path.exists()
+    refetched = []
+    if not is_new:
         try:
             fixture = json.loads(fixture_path.read_text(encoding="utf-8"))
         except ValueError as e:
             raise AnswerError(f"{fixture_path.name}: cannot read fixture: {e}") from None
+        absent, refetched = refetch_absent(src_dir, fixture)
         if fixture.get("reviewed") is True:
-            raise AnswerError(f"{fixture_path.name} is reviewed, so it is frozen. Nothing written.")
+            if not absent:
+                raise AnswerError(
+                    f"{fixture_path.name} is reviewed, so it is frozen. Nothing written.")
+            # A reviewed fixture only ever gets its pages back. Its JSON stays as reviewed.
+            return refetched + [f"{fixture_path.name} is reviewed, so it is frozen: the JSON "
+                                "was not written and failed URLs were not retried."]
         chips = None
     else:
         claims, chips = skeleton_claims(fixture_id, answer)
@@ -272,7 +317,7 @@ def run(src_dir):
     todo = [u for u in extract_urls(answer) if u not in stored]
     today = datetime.date.today().isoformat()
 
-    out, failures = [], []
+    out, failures = refetched, []
     for url in todo:
         status, final, ctype, body, reason = fetch(url)
         name = None
@@ -297,7 +342,10 @@ def run(src_dir):
     fixture["fetch_failures"] = [f for f in fixture["fetch_failures"]
                                  if f["url"] not in todo] + failures
 
-    write_json(fixture_path, fixture)
+    # With nothing fetched there is nothing new to record, so the JSON is left as it is. That
+    # keeps a refetch of absent pages from ever rewriting a committed fixture.
+    if is_new or todo:
+        write_json(fixture_path, fixture)
     if chips and chips > 1:
         out.append(f"warning: {chips} citation chips; every sources-shown URL was attached "
                    "to every claim each one covers. Prune cited_urls by hand.")
