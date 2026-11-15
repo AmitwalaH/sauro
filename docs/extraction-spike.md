@@ -123,7 +123,11 @@ harness works. **It says nothing about the question**, because the page was writ
 
 Run by Claude Code on 2026-11-15 at 09:38 UTC, on fixtures 0001 to 0004 at commit `6640ae9`.
 `check_fixtures.py --require-pages` passed first: 32 spans, 16 hashes, 0 failures. The owner
-re-runs once and the two outputs are compared row by row (Q44).
+re-ran on 2026-11-15 and diff against Claude Code's output printed IDENTICAL (Q44).
+
+The scratch folder `~/code/scratch/sauro-extraction/` is kept, not deleted as "Where the code
+lives" says, for the re-run at 20 labeled pages (Q48). Its `fixtures-0001-0004/` folder links
+to only the fixtures measured here, so this result can be reproduced after more fixtures land.
 
 **Provisional.** Trigger 1 stays not decided whatever the number (owner decision Q42).
 
