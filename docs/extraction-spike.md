@@ -188,7 +188,7 @@ prose. The element is named; no page text is quoted beyond the fixture spans.
 | `0002/6.html` | 0002-08 | The pregnancy limit is 200 mg per day because caffeine crosses the placenta and a fetus lacks the enzymes to break it down. | `dom_smoothie`, `readability` | A key takeaways list box at the top of the article |
 | `0002/6.html` | 0002-15 | A single large coffeehouse brew or cold brew can contain 250–330 mg | `dom_smoothie`, `readability` | Same box |
 | `0002/6.html` | 0002-16 | average five-hour half-life means a 200 mg coffee at 3 p.m. still leaves roughly 50 mg circulating in your blood at 1 a.m. | `dom_smoothie`, `readability` | Same box |
-| `0003/3.html` | 0003-01 | Often, symptoms of type 2 diabetes are subtle or absent | all five | An `<aside>` accordion module, outside the article body |
+| `0003/3.html` | 0003-01 | Often, symptoms of type 2 diabetes are subtle or absent | all five | A Questions and Answers block, an `<aside>` accordion inside the article body |
 | `0003/3.html` | 0003-03 | they typically include increased thirst, increased urination | all five | Same `<aside>` |
 | `0003/3.html` | 0003-08 | blurred vision | all five | Same `<aside>` |
 | `0003/3.html` | 0003-09, 0003-10 | Other early signs could be slow-healing sores, numbness and tingling in your hands and feet, and recurrent genital infections. | all five | Same `<aside>` |
@@ -205,7 +205,27 @@ the agreement rule counts in `dom_smoothie`'s favour.
 
 Five of 31 spans (16%) are lost by every extractor, Python included. All five are in one
 `<aside>` on one page. A matcher that reads only extracted text could not show evidence for
-those claims. See SAU-CORE-ENH-20261115-evidence-outside-main-content.
+those claims. See SAU-CORE-ENH-20261115-evidence-outside-main-content. The caveat below says
+this count overstates the evidence lost.
+
+### Caveat, 2026-11-15: the Questions and Answers block on `0003/3.html`
+
+The owner checked `0003/3.html` in a browser on 2026-11-15. The five spans lost by every
+extractor sit in a Questions and Answers block. It is visible inline in the article, with
+answers from named doctors, so it is page content a reader sees. The first version of this
+Result said the block was outside the article body. It is inside it, in an `<aside>` within
+the article body; that was read off a shortened element path, and the misses table is
+corrected.
+
+But the article body also states equivalent evidence for several of the lost spans, for
+example "your kidneys work harder to remove it", "This pulls fluids from your tissues, making
+you dehydrated" and "Symptoms can come on slowly". The assistant-proposed spans were taken from
+the Q and A block. Measured on 2026-11-15: each of these three phrases appears once in the
+stored page, in the article body and not in the block, and every extractor keeps all three
+except `readability` 0.3.0.
+
+So the count of 5 of 31 spans lost by every extractor overstates the evidence lost. The true
+figure needs the owner's blind pass. See SAU-BENCH-BUG-20261115-first-pass-labels-0003-known-wrong.
 
 ### Did the prediction hold?
 
@@ -227,7 +247,7 @@ those claims. See SAU-CORE-ENH-20261115-evidence-outside-main-content.
   favours every extractor, so the spans kept above are likely higher than on spans chosen
   without that filter.
 - One page, `0003/3.html`, holds 5 of trafilatura's 7 misses. The ground-truth counts rest
-  on it.
+  on it, and its first-pass labels are known to be wrong in places (see the caveat above).
 
 ## Recommendation
 
