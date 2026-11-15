@@ -1,0 +1,371 @@
+{
+  "id": "0005",
+  "source_model": "gpt",
+  "domain": "news",
+  "collected_on": "2026-11-15",
+  "answer_text": "The IPCC's key message about 1.5°C of global warming is that the world is rapidly running out of time to limit global temperature rise to this level.\n\nThe important distinction is that 1.5°C is not a temperature at which Earth suddenly becomes uninhabitable. It is a threshold used to limit the severity of climate change. Every additional fraction of a degree increases the risks.\n\nWhat does 1.5°C actually mean?\nIt means the Earth's average surface temperature rises 1.5°C above the pre-industrial average (roughly 1850–1900).\n\nIt does NOT mean that every location on Earth becomes just 1.5°C hotter. Some regions will experience much larger temperature increases.\n\n1. The world is likely to reach 1.5°C in the 2030s\nThe IPCC's Sixth Assessment Report (AR6), whose final synthesis was published in March 2023, found that:\n\nGlobal warming is likely to reach 1.5°C in the near term (2021–2040).\n\nEven very ambitious emissions reductions may not prevent a temporary crossing.\n\nUnder most assessed scenarios, the threshold is expected to be crossed around the early 2030s. \n\nipcc.ch\n+1\n\n2. What happens if we cross 1.5°C?\nThe IPCC warns of increasing risks with every additional fraction of warming.\n\nJak velké vlastně je letošní sucho? Podívejte se, zda u nás bylo někdy hůř, a porovnejte údaje z různých období | Reflex.cz\n\nExtreme heat\n\nMore frequent and intense heatwaves, increasing health risks and heat-related deaths.\n\nIssues | Delaware Center for the Inland Bays\n\nRising sea levels\n\nGreater coastal flooding and damage to communities and infrastructure.\n\n6 loại thực phẩm có khả năng ứng phó biến đổi khí hậu\n\nFood and water insecurity\n\nIncreasing risks to agriculture, food production and water availability.\n\nKorallenriffe weltweit sterben – warum uns das alle angeht | GMX\n\nEcosystem damage\n\nGreater biodiversity loss, coral bleaching and damage to natural ecosystems.\n\n\nipcc.ch\n+1\n3. Is there still a chance to stay below 1.5°C?\nThe IPCC says limiting warming is still physically possible, but it requires immediate and substantial action.\n\nIts proposed pathway includes:\n\nRapid and deep reductions in greenhouse gas emissions this decade.\n\nReaching global net-zero CO₂ emissions in the early 2050s.\n\nReducing dependence on fossil fuels.\n\nExpanding renewable energy and improving energy efficiency.\n\nThe report also warns that exceeding 1.5°C temporarily and subsequently bringing temperatures down would require net-negative CO₂ emissions and could not reverse all the damage. \n\nipcc.ch\n+1\n\n4. Is this still the latest IPCC report?\nYes. The Sixth Assessment Report's Synthesis Report (2023) remains the latest completed comprehensive IPCC assessment. The Seventh Assessment Cycle is underway, with major reports expected around 2028–2029. \n\nConsilium Data\n\nThe most important takeaway\n1.5°C is not a point of no return for humanity. It is a critical climate limit beyond which risks become increasingly severe.\n\nAnd one important scientific distinction: one individual year exceeding 1.5°C does not mean the long-term 1.5°C threshold has officially been crossed. The IPCC assesses this using a 20-year average.\n\nYou can read the original report here:\n\nIPCC – Summary for Policymakers (2023).\n\nsources shown:\nhttps://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/?trk=public_post_comment-text\nnote: chips show \"+1\" three times and \"Consilium Data\"; only this one link was recovered from the panel.\n",
+  "sources": [],
+  "fetch_failures": [
+    {
+      "url": "https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/?trk=public_post_comment-text",
+      "fetched_on": "2026-11-15",
+      "fetch_status": 403,
+      "final_url": "https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/?trk=public_post_comment-text",
+      "reason": "http_error",
+      "bytes": 5720,
+      "file": "1.html"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "0005-01",
+      "text": "The IPCC's key message about 1.5°C of global warming is that the world is rapidly running out of time to limit global temperature rise to this level.",
+      "cited_urls": [],
+      "label": "unverifiable",
+      "reason_code": "no_citation",
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "Assigned mechanically by the assistant, no page read, 2026-11-15.",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-02",
+      "text": "The important distinction is that 1.5°C is not a temperature at which Earth suddenly becomes uninhabitable.",
+      "cited_urls": [],
+      "label": "unverifiable",
+      "reason_code": "no_citation",
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "Assigned mechanically by the assistant, no page read, 2026-11-15.",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-03",
+      "text": "It is a threshold used to limit the severity of climate change.",
+      "cited_urls": [],
+      "label": "unverifiable",
+      "reason_code": "no_citation",
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "Assigned mechanically by the assistant, no page read, 2026-11-15.",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-04",
+      "text": "Every additional fraction of a degree increases the risks.",
+      "cited_urls": [],
+      "label": "unverifiable",
+      "reason_code": "no_citation",
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "Assigned mechanically by the assistant, no page read, 2026-11-15.",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-06",
+      "text": "It means the Earth's average surface temperature rises 1.5°C above the pre-industrial average (roughly 1850–1900).",
+      "cited_urls": [],
+      "label": "unverifiable",
+      "reason_code": "no_citation",
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "Assigned mechanically by the assistant, no page read, 2026-11-15.",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-07",
+      "text": "It does NOT mean that every location on Earth becomes just 1.5°C hotter.",
+      "cited_urls": [],
+      "label": "unverifiable",
+      "reason_code": "no_citation",
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "Assigned mechanically by the assistant, no page read, 2026-11-15.",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-08",
+      "text": "Some regions will experience much larger temperature increases.",
+      "cited_urls": [],
+      "label": "unverifiable",
+      "reason_code": "no_citation",
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "Assigned mechanically by the assistant, no page read, 2026-11-15.",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-11",
+      "text": "The IPCC's Sixth Assessment Report (AR6), whose final synthesis was published in March 2023, found that:",
+      "cited_urls": [
+        "https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/?trk=public_post_comment-text"
+      ],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "chip source not recovered",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-12",
+      "text": "Global warming is likely to reach 1.5°C in the near term (2021–2040).",
+      "cited_urls": [
+        "https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/?trk=public_post_comment-text"
+      ],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "chip source not recovered",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-13",
+      "text": "Even very ambitious emissions reductions may not prevent a temporary crossing.",
+      "cited_urls": [
+        "https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/?trk=public_post_comment-text"
+      ],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "chip source not recovered",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-14",
+      "text": "Under most assessed scenarios, the threshold is expected to be crossed around the early 2030s.",
+      "cited_urls": [
+        "https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/?trk=public_post_comment-text"
+      ],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "chip source not recovered",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-17",
+      "text": "The IPCC warns of increasing risks with every additional fraction of warming.",
+      "cited_urls": [
+        "https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/?trk=public_post_comment-text"
+      ],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "chip source not recovered",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-21",
+      "text": "More frequent and intense heatwaves, increasing health risks and heat-related deaths.",
+      "cited_urls": [
+        "https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/?trk=public_post_comment-text"
+      ],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "chip source not recovered",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-24",
+      "text": "Greater coastal flooding and damage to communities and infrastructure.",
+      "cited_urls": [
+        "https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/?trk=public_post_comment-text"
+      ],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "chip source not recovered",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-27",
+      "text": "Increasing risks to agriculture, food production and water availability.",
+      "cited_urls": [
+        "https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/?trk=public_post_comment-text"
+      ],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "chip source not recovered",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-30",
+      "text": "Greater biodiversity loss, coral bleaching and damage to natural ecosystems.",
+      "cited_urls": [
+        "https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/?trk=public_post_comment-text"
+      ],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "chip source not recovered",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-33",
+      "text": "The IPCC says limiting warming is still physically possible, but it requires immediate and substantial action.",
+      "cited_urls": [
+        "https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/?trk=public_post_comment-text"
+      ],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "chip source not recovered",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-35",
+      "text": "Rapid and deep reductions in greenhouse gas emissions this decade.",
+      "cited_urls": [
+        "https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/?trk=public_post_comment-text"
+      ],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "chip source not recovered",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-36",
+      "text": "Reaching global net-zero CO₂ emissions in the early 2050s.",
+      "cited_urls": [
+        "https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/?trk=public_post_comment-text"
+      ],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "chip source not recovered",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-37",
+      "text": "Reducing dependence on fossil fuels.",
+      "cited_urls": [
+        "https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/?trk=public_post_comment-text"
+      ],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "chip source not recovered",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-38",
+      "text": "Expanding renewable energy and improving energy efficiency.",
+      "cited_urls": [
+        "https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/?trk=public_post_comment-text"
+      ],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "chip source not recovered",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-39",
+      "text": "The report also warns that exceeding 1.5°C temporarily and subsequently bringing temperatures down would require net-negative CO₂ emissions and could not reverse all the damage.",
+      "cited_urls": [
+        "https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/?trk=public_post_comment-text"
+      ],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "chip source not recovered",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-42",
+      "text": "Yes.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "chip source not recovered",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-43",
+      "text": "The Sixth Assessment Report's Synthesis Report (2023) remains the latest completed comprehensive IPCC assessment.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "chip source not recovered",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-44",
+      "text": "The Seventh Assessment Cycle is underway, with major reports expected around 2028–2029.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "chip source not recovered",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-47",
+      "text": "1.5°C is not a point of no return for humanity.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "trailing link to the original report; owner decides whether it is a citation",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-48",
+      "text": "It is a critical climate limit beyond which risks become increasingly severe.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "trailing link to the original report; owner decides whether it is a citation",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-49",
+      "text": "And one important scientific distinction: one individual year exceeding 1.5°C does not mean the long-term 1.5°C threshold has officially been crossed.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "trailing link to the original report; owner decides whether it is a citation",
+      "hard": false
+    },
+    {
+      "claim_id": "0005-50",
+      "text": "The IPCC assesses this using a 20-year average.",
+      "cited_urls": [],
+      "label": null,
+      "reason_code": null,
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "trailing link to the original report; owner decides whether it is a citation",
+      "hard": false
+    }
+  ],
+  "reviewed": false
+}
