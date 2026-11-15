@@ -23,7 +23,13 @@ Fixtures in `bench/fixtures/` are labeled by hand under [`bench/LABELING.md`](be
 
 - Do not label with an AI. The labels are what the engine is judged by.
 - Every supported, partial or contradicted label needs an `evidence_span` that appears
-  verbatim in the stored page. A script checks this and the pull request fails if it does not.
+  verbatim in the stored page. CI checks labels and structure but cannot check spans, because
+  stored pages are not in the repo.
+- Stored pages stay on the labeler's machine and are never committed; the fixture keeps each
+  page's URL, fetch date and sha256, and `fetch_sources.py` fetches missing pages again, though
+  a refetched page may differ (see [`bench/README.md`](bench/README.md)). Run
+  `python3 bench/tools/check_fixtures.py --require-pages` with every page present before you
+  commit a fixture.
 - Fixtures marked `"reviewed": true` are frozen. A label change needs its own pull request with
   the reason in the description.
 - The baseline file `bench/baseline.json` is never edited by hand. If your change moves the

@@ -1,0 +1,185 @@
+{
+  "id": "0003",
+  "source_model": "gemini",
+  "domain": "health",
+  "collected_on": "2026-11-03",
+  "answer_text": "Early symptoms of type 2 diabetes often develop very gradually—so slowly that many people have the condition for years without realizing it.\n\nCommon Early Symptoms\nIncreased thirst and frequent urination: High blood sugar forces your kidneys to work extra hard to filter out excess glucose. This pulls fluids from your body tissue, leaving you dehydrated and making you drink and urinate much more than usual (especially at night).\n\nConstant fatigue: Because your body's cells cannot efficiently take in glucose from your blood to use for fuel, you can feel chronically tired and weak, even if you are sleeping well.\n\nIncreased hunger (polyphagia): Even after you eat, your cells remain starved of energy because glucose can't enter them without working insulin, leading to ongoing hunger.\n\nUnintentional weight loss: When your body cannot use sugar for energy, it begins burning muscle and fat for fuel instead, causing weight loss even if you are eating normally or more.\n\nBlurry vision: High blood sugar draws fluid out of the lenses of your eyes, affecting your ability to focus clearly.\n\nSlow-healing cuts or frequent infections: Elevated blood sugar impairs circulation and immune function, making cuts, sores, and skin or yeast infections heal much slower than normal.\n\nTingling or numbness: High glucose over time damages small nerves, leading to a \"pins and needles\" feeling or numbness in your hands and feet.\n\nDark patches of skin (Acanthosis Nigricans): Darker, velvety patches of skin can form on body folds, most commonly around the neck, armpits, or groin area. This is a common sign of insulin resistance.\n\nSources & References\nMayo Clinic: Type 2 Diabetes - Symptoms & Causes\n\nMayo Clinic (In-depth): When Diabetes Symptoms Are a Concern\n\nWebMD: Early Signs and Symptoms of Type 2 Diabetes\n\nsources shown:\nhttps://www.mayoclinic.org/diseases-conditions/type-2-diabetes/symptoms-causes/syc-20351193\nhttps://www.mayoclinic.org/diseases-conditions/diabetes/in-depth/diabetes-symptoms/art-20044248\nhttps://www.webmd.com/diabetes/type-2-diabetes-symptoms",
+  "sources": [
+    {
+      "url": "https://www.webmd.com/diabetes/type-2-diabetes-symptoms",
+      "file": "3.html",
+      "fetched_on": "2026-11-03",
+      "fetch_status": 200,
+      "final_url": "https://www.webmd.com/diabetes/type-2-diabetes-symptoms",
+      "sha256": "94f8cb9ae2fdd0c1ad1c2e5595b7e53a92731fec0fd667c960a3d52443f4340c"
+    }
+  ],
+  "fetch_failures": [
+    {
+      "url": "https://www.mayoclinic.org/diseases-conditions/type-2-diabetes/symptoms-causes/syc-20351193",
+      "fetched_on": "2026-11-03",
+      "fetch_status": 403,
+      "final_url": "https://www.mayoclinic.org/diseases-conditions/type-2-diabetes/symptoms-causes/syc-20351193",
+      "reason": "http_error",
+      "bytes": 468,
+      "file": "1.html"
+    },
+    {
+      "url": "https://www.mayoclinic.org/diseases-conditions/diabetes/in-depth/diabetes-symptoms/art-20044248",
+      "fetched_on": "2026-11-03",
+      "fetch_status": 403,
+      "final_url": "https://www.mayoclinic.org/diseases-conditions/diabetes/in-depth/diabetes-symptoms/art-20044248",
+      "reason": "http_error",
+      "bytes": 472,
+      "file": "2.html"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "0003-01",
+      "text": "Early symptoms of type 2 diabetes often develop very gradually—so slowly that many people have the condition for years without realizing it.",
+      "cited_urls": [
+        "https://www.webmd.com/diabetes/type-2-diabetes-symptoms"
+      ],
+      "label": "partial",
+      "reason_code": "scope_shift",
+      "evidence_span": "Often, symptoms of type 2 diabetes are subtle or absent",
+      "evidence_location": "3.html (WebMD)",
+      "labeler_note": "Page says subtle or absent; claim says gradual, for years. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": true
+    },
+    {
+      "claim_id": "0003-03",
+      "text": "Increased thirst and frequent urination: High blood sugar forces your kidneys to work extra hard to filter out excess glucose.",
+      "cited_urls": [
+        "https://www.webmd.com/diabetes/type-2-diabetes-symptoms"
+      ],
+      "label": "partial",
+      "reason_code": "scope_shift",
+      "evidence_span": "they typically include increased thirst, increased urination",
+      "evidence_location": "3.html (WebMD)",
+      "labeler_note": "Symptoms supported. Mechanism not on WebMD; the two Mayo pages are blocked (403) and could not be read. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0003-04",
+      "text": "This pulls fluids from your body tissue, leaving you dehydrated and making you drink and urinate much more than usual (especially at night).",
+      "cited_urls": [
+        "https://www.mayoclinic.org/diseases-conditions/type-2-diabetes/symptoms-causes/syc-20351193",
+        "https://www.mayoclinic.org/diseases-conditions/diabetes/in-depth/diabetes-symptoms/art-20044248",
+        "https://www.webmd.com/diabetes/type-2-diabetes-symptoms"
+      ],
+      "label": "unverifiable",
+      "reason_code": "not_in_source",
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "Nothing on fluid loss or night urination on WebMD; Mayo pages blocked (403). Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0003-05",
+      "text": "Constant fatigue: Because your body's cells cannot efficiently take in glucose from your blood to use for fuel, you can feel chronically tired and weak, even if you are sleeping well.",
+      "cited_urls": [
+        "https://www.webmd.com/diabetes/type-2-diabetes-symptoms"
+      ],
+      "label": "supported",
+      "reason_code": "paraphrase",
+      "evidence_span": "When your body can’t use energy from food, you could feel weak and tired.",
+      "evidence_location": "3.html (WebMD)",
+      "labeler_note": "Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0003-06",
+      "text": "Increased hunger (polyphagia): Even after you eat, your cells remain starved of energy because glucose can't enter them without working insulin, leading to ongoing hunger.",
+      "cited_urls": [
+        "https://www.webmd.com/diabetes/type-2-diabetes-symptoms"
+      ],
+      "label": "supported",
+      "reason_code": "paraphrase",
+      "evidence_span": "Because diabetes can stop glucose from getting to your cells, you feel hungry even after you’ve eaten.",
+      "evidence_location": "3.html (WebMD)",
+      "labeler_note": "Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0003-07",
+      "text": "Unintentional weight loss: When your body cannot use sugar for energy, it begins burning muscle and fat for fuel instead, causing weight loss even if you are eating normally or more.",
+      "cited_urls": [
+        "https://www.webmd.com/diabetes/type-2-diabetes-symptoms"
+      ],
+      "label": "partial",
+      "reason_code": "scope_shift",
+      "evidence_span": "Weight loss without trying.",
+      "evidence_location": "3.html (WebMD)",
+      "labeler_note": "Symptom supported. Mechanism not on WebMD; the two Mayo pages are blocked (403) and could not be read. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0003-08",
+      "text": "Blurry vision: High blood sugar draws fluid out of the lenses of your eyes, affecting your ability to focus clearly.",
+      "cited_urls": [
+        "https://www.webmd.com/diabetes/type-2-diabetes-symptoms"
+      ],
+      "label": "partial",
+      "reason_code": "scope_shift",
+      "evidence_span": "blurred vision",
+      "evidence_location": "3.html (WebMD)",
+      "labeler_note": "Symptom supported. Mechanism not on WebMD; the two Mayo pages are blocked (403) and could not be read. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0003-09",
+      "text": "Slow-healing cuts or frequent infections: Elevated blood sugar impairs circulation and immune function, making cuts, sores, and skin or yeast infections heal much slower than normal.",
+      "cited_urls": [
+        "https://www.webmd.com/diabetes/type-2-diabetes-symptoms"
+      ],
+      "label": "partial",
+      "reason_code": "scope_shift",
+      "evidence_span": "Other early signs could be slow-healing sores, numbness and tingling in your hands and feet, and recurrent genital infections.",
+      "evidence_location": "3.html (WebMD)",
+      "labeler_note": "Page says slow-healing sores and genital infections. Mechanism not on WebMD; the two Mayo pages are blocked (403) and could not be read. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0003-10",
+      "text": "Tingling or numbness: High glucose over time damages small nerves, leading to a \"pins and needles\" feeling or numbness in your hands and feet.",
+      "cited_urls": [
+        "https://www.webmd.com/diabetes/type-2-diabetes-symptoms"
+      ],
+      "label": "partial",
+      "reason_code": "scope_shift",
+      "evidence_span": "Other early signs could be slow-healing sores, numbness and tingling in your hands and feet, and recurrent genital infections.",
+      "evidence_location": "3.html (WebMD)",
+      "labeler_note": "Symptom supported. Mechanism not on WebMD; the two Mayo pages are blocked (403) and could not be read. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0003-11",
+      "text": "Dark patches of skin (Acanthosis Nigricans): Darker, velvety patches of skin can form on body folds, most commonly around the neck, armpits, or groin area.",
+      "cited_urls": [
+        "https://www.webmd.com/diabetes/type-2-diabetes-symptoms"
+      ],
+      "label": "supported",
+      "reason_code": "paraphrase",
+      "evidence_span": "These velvety darker areas can appear on your neck, armpits, groin , hands, elbows, and knees.",
+      "evidence_location": "3.html (WebMD)",
+      "labeler_note": "Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0003-12",
+      "text": "This is a common sign of insulin resistance.",
+      "cited_urls": [
+        "https://www.webmd.com/diabetes/type-2-diabetes-symptoms"
+      ],
+      "label": "partial",
+      "reason_code": "scope_shift",
+      "evidence_span": "If you have signs of insulin resistance, such as diseases of the heart and blood vessels",
+      "evidence_location": "3.html (WebMD)",
+      "labeler_note": "Page mentions insulin resistance but does not tie it to the skin patches. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": true
+    }
+  ],
+  "reviewed": false
+}

@@ -1,0 +1,186 @@
+{
+  "id": "0001",
+  "source_model": "gpt",
+  "domain": "health",
+  "collected_on": "2026-11-03",
+  "answer_text": "Ibuprofen can interact with blood pressure medication, so taking them together is not always safe. It depends on which BP medication you're taking, your dosage, and how frequently you use ibuprofen.\n\nIbuprofen is an NSAID (non-steroidal anti-inflammatory drug), commonly sold under brands such as Brufen and Advil.\n\nWhat are the risks?\nTaking ibuprofen with certain blood pressure medicines can:\n\nIncrease blood pressure: Ibuprofen can reduce the effectiveness of some BP medications.\n\nAffect kidney function: The combination can put extra stress on your kidneys.\n\nCause fluid retention: This can worsen high blood pressure or heart failure.\n\nThe risk is particularly concerning when ibuprofen is combined with:\n\nACE inhibitors (e.g. ramipril, enalapril).\n\nARBs (e.g. telmisartan, losartan, olmesartan).\n\nDiuretics (e.g. hydrochlorothiazide, furosemide).\n\nIs there a safer alternative?\nFor ordinary pain or fever, paracetamol (Dolo 650, Crocin, or Calpol) may be a more suitable alternative for many people with high blood pressure. However, it also needs to be used according to the recommended dose and individual medical circumstances.\n\nAvoid taking ibuprofen regularly without checking with your doctor or pharmacist first.\n\nnhs.uk\n+2\n\nLet me check your specific combination\nI need two details:\n\nWhich BP medicine is being taken? For example, Telma 40, Amlodipine 5, Losartan 50, or something else.\n\nWhy do you need ibuprofen? Headache, toothache, fever, body pain, joint pain, or something else?\n\nI'll help you understand whether that particular combination is safe and what alternative may be appropriate.\n\nImportant: Don't stop or skip prescribed BP medication to take ibuprofen.\n\nsources shown:\nhttps://www.nhs.uk/medicines/ibuprofen-for-adults/?rfsn=6242243.0924357\nhttps://www.dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=e39e7296-99b8-3489-e053-2995a90a4e38&type=display\nhttps://www.niddk.nih.gov/health-information/kidney-disease/keeping-kidneys-safe\nhttps://www.kidney.org/kidney-topics/safe-medicine-use-chronic-kidney-disease?page=15\nhttps://www.nhs.uk/medicines/nsaids/",
+  "sources": [
+    {
+      "url": "https://www.dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=e39e7296-99b8-3489-e053-2995a90a4e38&type=display",
+      "file": "2.html",
+      "fetched_on": "2026-11-03",
+      "fetch_status": 200,
+      "final_url": "https://www.dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=e39e7296-99b8-3489-e053-2995a90a4e38&type=display",
+      "sha256": "3fb458e453d99bdb5538cf40158a2ab614e96fc6057ac7e7608ab4df45d66384"
+    },
+    {
+      "url": "https://www.niddk.nih.gov/health-information/kidney-disease/keeping-kidneys-safe",
+      "file": "3.html",
+      "fetched_on": "2026-11-03",
+      "fetch_status": 200,
+      "final_url": "https://www.niddk.nih.gov/health-information/kidney-disease/keeping-kidneys-safe",
+      "sha256": "c3fe8723de21d663dc839cb9487a54a528631269c4a1e0334fc0c741a3e0238e"
+    },
+    {
+      "url": "https://www.kidney.org/kidney-topics/safe-medicine-use-chronic-kidney-disease?page=15",
+      "file": "4.html",
+      "fetched_on": "2026-11-03",
+      "fetch_status": 200,
+      "final_url": "https://www.kidney.org/kidney-topics/safe-medicine-use-chronic-kidney-disease?page=15",
+      "sha256": "2c9d80a3ee6151f6b67b08484046a964ddc67badb0778c32160acff61fe06aa9"
+    },
+    {
+      "url": "https://www.nhs.uk/medicines/nsaids/",
+      "file": "5.html",
+      "fetched_on": "2026-11-03",
+      "fetch_status": 200,
+      "final_url": "https://www.nhs.uk/medicines/nsaids/",
+      "sha256": "620131abd847572dc7d30b6e6614e322ba099eb48add3f5aade10df688d4fa1a"
+    },
+    {
+      "url": "https://www.nhs.uk/medicines/ibuprofen-for-adults/?rfsn=6242243.0924357",
+      "file": "6.html",
+      "fetched_on": "2026-11-03",
+      "fetch_status": 200,
+      "final_url": "https://www.nhs.uk/medicines/ibuprofen-for-adults/?rfsn=6242243.0924357",
+      "sha256": "7dfcd2c00e5b968ad28f58a36495c21e3601a4b4a3fe5d85e8b5b718d379aa92"
+    }
+  ],
+  "fetch_failures": [],
+  "claims": [
+    {
+      "claim_id": "0001-01",
+      "text": "Ibuprofen can interact with blood pressure medication, so taking them together is not always safe.",
+      "cited_urls": [],
+      "label": "unverifiable",
+      "reason_code": "no_citation",
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "Above the first heading; the only chip is three sections down.",
+      "hard": false
+    },
+    {
+      "claim_id": "0001-02",
+      "text": "It depends on which BP medication you're taking, your dosage, and how frequently you use ibuprofen.",
+      "cited_urls": [],
+      "label": "unverifiable",
+      "reason_code": "no_citation",
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "Above the first heading.",
+      "hard": false
+    },
+    {
+      "claim_id": "0001-03",
+      "text": "Ibuprofen is an NSAID (non-steroidal anti-inflammatory drug), commonly sold under brands such as Brufen and Advil.",
+      "cited_urls": [],
+      "label": "unverifiable",
+      "reason_code": "no_citation",
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "Above the first heading. Brand names are Indian market.",
+      "hard": false
+    },
+    {
+      "claim_id": "0001-06",
+      "text": "Increase blood pressure: Ibuprofen can reduce the effectiveness of some BP medications.",
+      "cited_urls": [],
+      "label": "unverifiable",
+      "reason_code": "no_citation",
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "Under 'What are the risks?', a section with no chip.",
+      "hard": false
+    },
+    {
+      "claim_id": "0001-07",
+      "text": "Affect kidney function: The combination can put extra stress on your kidneys.",
+      "cited_urls": [],
+      "label": "unverifiable",
+      "reason_code": "no_citation",
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "Under 'What are the risks?', no chip.",
+      "hard": false
+    },
+    {
+      "claim_id": "0001-08",
+      "text": "Cause fluid retention: This can worsen high blood pressure or heart failure.",
+      "cited_urls": [],
+      "label": "unverifiable",
+      "reason_code": "no_citation",
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "Under 'What are the risks?', no chip.",
+      "hard": false
+    },
+    {
+      "claim_id": "0001-10",
+      "text": "ACE inhibitors (e.g. ramipril, enalapril).",
+      "cited_urls": [],
+      "label": "unverifiable",
+      "reason_code": "no_citation",
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "List item under 'The risk is particularly concerning when ibuprofen is combined with:', no chip.",
+      "hard": false
+    },
+    {
+      "claim_id": "0001-11",
+      "text": "ARBs (e.g. telmisartan, losartan, olmesartan).",
+      "cited_urls": [],
+      "label": "unverifiable",
+      "reason_code": "no_citation",
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "List item, no chip.",
+      "hard": false
+    },
+    {
+      "claim_id": "0001-12",
+      "text": "Diuretics (e.g. hydrochlorothiazide, furosemide).",
+      "cited_urls": [],
+      "label": "unverifiable",
+      "reason_code": "no_citation",
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "List item, no chip.",
+      "hard": false
+    },
+    {
+      "claim_id": "0001-14",
+      "text": "For ordinary pain or fever, paracetamol (Dolo 650, Crocin, or Calpol) may be a more suitable alternative for many people with high blood pressure.",
+      "cited_urls": [
+        "https://www.nhs.uk/medicines/ibuprofen-for-adults/?rfsn=6242243.0924357",
+        "https://www.dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=e39e7296-99b8-3489-e053-2995a90a4e38&type=display",
+        "https://www.niddk.nih.gov/health-information/kidney-disease/keeping-kidneys-safe",
+        "https://www.kidney.org/kidney-topics/safe-medicine-use-chronic-kidney-disease?page=15",
+        "https://www.nhs.uk/medicines/nsaids/"
+      ],
+      "label": "partial",
+      "reason_code": "scope_shift",
+      "evidence_span": "If you can take paracetamol, it's a good idea to try it before taking ibuprofen.",
+      "evidence_location": "6.html (NHS ibuprofen for adults), 'Information' box near the top",
+      "labeler_note": "NHS recommends paracetamol first for everyone; claim narrows it to people with high blood pressure, which the page never mentions. 2,3,4,5.html do not mention paracetamol.",
+      "hard": true
+    },
+    {
+      "claim_id": "0001-15",
+      "text": "However, it also needs to be used according to the recommended dose and individual medical circumstances.",
+      "cited_urls": [
+        "https://www.nhs.uk/medicines/ibuprofen-for-adults/?rfsn=6242243.0924357",
+        "https://www.dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=e39e7296-99b8-3489-e053-2995a90a4e38&type=display",
+        "https://www.niddk.nih.gov/health-information/kidney-disease/keeping-kidneys-safe",
+        "https://www.kidney.org/kidney-topics/safe-medicine-use-chronic-kidney-disease?page=15",
+        "https://www.nhs.uk/medicines/nsaids/"
+      ],
+      "label": "unverifiable",
+      "reason_code": "not_in_source",
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "No cited page says anything about paracetamol dosing. 6.html mentions paracetamol five times, all about trying it first, pregnancy and breastfeeding. 2,3,4,5.html do not mention it.",
+      "hard": false
+    }
+  ],
+  "reviewed": false
+}

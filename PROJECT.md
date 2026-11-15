@@ -111,6 +111,7 @@ cargo fmt --all -- --check
 cargo clippy --all-targets --all-features -- -D warnings
 cargo test --all
 python3 bench/tools/check_fixtures.py
+python3 bench/tools/check_fixtures.py --require-pages   # labeler, before a fixture commit
 python3 -m unittest bench/tools/test_check_fixtures.py
 python3 -m unittest bench/tools/test_fetch_sources.py
 cargo run -p sauro-bench -- --check-baseline     # from task 3 onward

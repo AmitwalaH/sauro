@@ -79,20 +79,24 @@ class CheckFixtures(unittest.TestCase):
         }
         (self.dir / f"{fid}.json").write_text(json.dumps(fixture), encoding="utf-8")
 
-    def run_script(self):
+    def run_script(self, *flags):
         return subprocess.run(
-            [sys.executable, str(SCRIPT), str(self.dir)], capture_output=True, text=True
+            [sys.executable, str(SCRIPT), str(self.dir), *flags], capture_output=True, text=True
         )
 
-    def assert_passes(self):
-        r = self.run_script()
+    def assert_passes(self, *flags):
+        r = self.run_script(*flags)
         self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
         return r
 
-    def assert_fails_naming(self, needle):
-        r = self.run_script()
+    def assert_fails_naming(self, needle, *flags):
+        r = self.run_script(*flags)
         self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
         self.assertIn(needle, r.stdout)
+
+    def remove_page(self, fid, name):
+        """What a clone looks like under Q25: the JSON is there, the stored page is not."""
+        (self.dir / f"{fid}.sources" / name).unlink()
 
     # What "verbatim" means: rendered text, whitespace ignored.
 
@@ -223,9 +227,11 @@ class CheckFixtures(unittest.TestCase):
         self.assert_fails_naming("0001.sources/page0.html does not match its sha256")
 
     def test_hashed_page_missing_on_disk_fails(self):
+        # Under Q25 a missing page fails only when the labeler asks for every page.
         self.add("0001", [claim("0001-01", None, None, None)], hashed=True)
         (self.dir / "0001.sources" / "page0.html").unlink()
-        self.assert_fails_naming("0001.json: stored page missing: 0001.sources/page0.html")
+        self.assert_fails_naming("0001.json: stored page missing: 0001.sources/page0.html",
+                                 "--require-pages")
 
     def test_source_without_sha256_is_not_hash_checked(self):
         # The guide's sources shape has no sha256, so a hand-made entry is still valid.
@@ -257,9 +263,10 @@ class CheckFixtures(unittest.TestCase):
         self.assert_fails_naming("0001-01: has an evidence_span but no cited URL")
 
     def test_listed_file_missing_on_disk_fails(self):
+        # Under Q25 a missing page fails only when the labeler asks for every page.
         self.add("0001", [claim("0001-01", "supported", "Most people do not notice it.")],
                  sources=[{"url": URL_A, "file": "gone.html", "fetched_on": "2026-11-01"}])
-        self.assert_fails_naming("0001-01")
+        self.assert_fails_naming("0001-01", "--require-pages")
 
     def test_missing_sources_list_fails_naming_file(self):
         self.add("0001", [claim("0001-01", "supported", "Most people do not notice it.")])
@@ -274,6 +281,102 @@ class CheckFixtures(unittest.TestCase):
         self.add("0002", [claim("0002-01", "supported", "Most people do not notice it.")],
                  pages={URL_A: OTHER_PAGE})
         self.assert_fails_naming("0002-01")
+
+    # Pages absent from disk (Q25: stored pages are not in git, so CI has none of them).
+
+    def test_all_pages_present_counts_zero_absent(self):
+        self.add("0001", [claim("0001-01", "supported", "Most people do not notice it.")],
+                 hashed=True)
+        r = self.assert_passes()
+        self.assertIn("1 spans, 1 hashes, 0 pages absent, 0 spans unchecked", r.stdout)
+
+    def test_absent_page_is_counted_not_failed(self):
+        self.add("0001", [claim("0001-01", "supported", "Most people do not notice it.")],
+                 hashed=True)
+        self.remove_page("0001", "page0.html")
+        r = self.assert_passes()
+        self.assertIn("1 spans, 0 hashes, 1 pages absent, 1 spans unchecked", r.stdout)
+        self.assertNotIn("FAIL", r.stdout)
+
+    def test_require_pages_fails_on_an_absent_page_nothing_cites(self):
+        # No sha256 and no claim cites it, so only the flag can notice it is gone.
+        self.add("0001", [claim("0001-01", "supported", "Most people do not notice it.")],
+                 pages={URL_A: PAGE, URL_B: OTHER_PAGE})
+        self.remove_page("0001", "page1.html")
+        self.assert_passes()
+        self.assert_fails_naming("0001.json: stored page missing: 0001.sources/page1.html",
+                                 "--require-pages")
+
+    def test_require_pages_passes_when_every_page_is_there(self):
+        self.add("0001", [claim("0001-01", "supported", "Most people do not notice it.")],
+                 hashed=True)
+        r = self.assert_passes("--require-pages")
+        self.assertIn("1 hashes, 0 pages absent, 0 spans unchecked", r.stdout)
+
+    def test_span_found_in_present_page_is_checked_beside_an_absent_one(self):
+        # A wrong fix that skips the claim whenever any cited page is absent says "1 unchecked".
+        self.add("0001", [claim("0001-01", "supported", "Most people do not notice it.",
+                                urls=(URL_A, URL_B))],
+                 pages={URL_A: PAGE, URL_B: OTHER_PAGE})
+        self.remove_page("0001", "page1.html")
+        r = self.assert_passes()
+        self.assertIn("1 pages absent, 0 spans unchecked", r.stdout)
+
+    def test_span_not_in_present_page_is_unchecked_when_another_cited_page_is_absent(self):
+        # The span may be on the absent page, so this is not evidence of a wrong span.
+        self.add("0001", [claim("0001-01", "supported", "Most people do not notice it.",
+                                urls=(URL_B, URL_A))],
+                 pages={URL_A: PAGE, URL_B: OTHER_PAGE})
+        self.remove_page("0001", "page0.html")
+        r = self.assert_passes()
+        self.assertIn("1 pages absent, 1 spans unchecked", r.stdout)
+
+    def test_span_not_in_its_only_present_page_still_fails_beside_absent_pages(self):
+        # Another claim's absent page must not switch off the check for this one.
+        self.add("0001", [claim("0001-01", "supported", "Most people do not notice it.",
+                                urls=(URL_B,)),
+                          claim("0001-02", "supported", "Most people do not notice it.")],
+                 pages={URL_A: PAGE, URL_B: OTHER_PAGE})
+        self.remove_page("0001", "page0.html")
+        self.assert_fails_naming("0001-01: evidence_span not found in its cited page")
+
+    def test_present_page_is_hash_checked_beside_an_absent_one(self):
+        self.add("0001", [claim("0001-01", None, None, None)],
+                 pages={URL_A: PAGE, URL_B: OTHER_PAGE}, hashed=True)
+        self.remove_page("0001", "page0.html")
+        (self.dir / "0001.sources" / "page1.html").write_text("changed", encoding="utf-8")
+        self.assert_fails_naming("0001.sources/page1.html does not match its sha256")
+
+    def test_require_pages_fails_a_span_whose_cited_page_is_absent(self):
+        self.add("0001", [claim("0001-01", "supported", "Most people do not notice it.")],
+                 hashed=True)
+        self.remove_page("0001", "page0.html")
+        self.assert_fails_naming("0001-01: stored page missing: 0001.sources/page0.html",
+                                 "--require-pages")
+
+    # Checks that need no page still run when every page is absent, as on CI.
+
+    def check_without_pages(self, claims, needle, reviewed=False):
+        self.add("0001", claims, reviewed=reviewed, hashed=True)
+        self.remove_page("0001", "page0.html")
+        self.assert_fails_naming(needle)
+
+    def test_unknown_label_fails_without_pages(self):
+        self.check_without_pages([claim("0001-01", "true", "Most people do not notice it.")],
+                                 "0001-01: unknown label 'true'")
+
+    def test_missing_span_fails_without_pages(self):
+        self.check_without_pages([claim("0001-01", "partial", None)],
+                                 "0001-01: label partial needs an evidence_span")
+
+    def test_cited_url_not_in_sources_fails_without_pages(self):
+        self.check_without_pages(
+            [claim("0001-01", "supported", "Most people do not notice it.", urls=(URL_B,))],
+            "0001-01: cited URL not in sources")
+
+    def test_null_label_in_reviewed_fixture_fails_without_pages(self):
+        self.check_without_pages([claim("0001-01", None, None, None)],
+                                 "0001-01: label is null in a reviewed fixture", reviewed=True)
 
     # The script itself.
 

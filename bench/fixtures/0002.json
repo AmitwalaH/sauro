@@ -1,0 +1,191 @@
+{
+  "id": "0002",
+  "source_model": "claude",
+  "domain": "health",
+  "collected_on": "2026-11-03",
+  "answer_text": "For most healthy adults, the widely cited safe limit is about 400 mg of caffeine per day. That's roughly four 8-ounce cups of brewed coffee, and it's the benchmark most major health organizations agree on. The figure comes from the U.S. FDA and from the European Food Safety Authority, which found that single doses up to 200 mg and daily intakes up to 400 mg don't raise safety concerns for adults.\nacibademinternational\nnewhope\n\nA few groups should stay lower:\n\nPregnant women: up to 200 mg a day doesn't raise safety concerns for the fetus, so that's the usual ceiling.\nnewhope\nChildren and adolescents: EFSA puts it at 3 mg per kg of body weight per day, which for most teens works out to roughly 100 mg or less.\nnewhope\nPeople with heart conditions, anxiety disorders, sleep problems, or on certain medications: often advised to limit further; some people feel wired and queasy at 150 mg, so individual tolerance matters a lot.\nacibademinternational\nFor context on what counts toward 400 mg: brewed coffee is roughly 95–100 mg per 8 oz, a large coffeehouse coffee 250–330 mg, an espresso shot about 65 mg, black tea about 45–50 mg, and energy drinks anywhere from 70–300 mg. A single large café coffee can get you most of the way to the limit. Timing matters too, since caffeine has a roughly five-hour half-life, so a 200 mg coffee at 3 p.m. still leaves about 50 mg in your system at 1 a.m.\nacibademinternational\nacibademinternational\n\nNote that 400 mg is an upper bound considered safe, not a target—and if you have a medical condition, your doctor may advise something different.\n\nSources:\n\nEFSA: 400 mg of caffeine is safe – New Hope Network\nHow Much Caffeine Is Too Much? Your Daily Limit, Explained – Acibadem International\nThe Maximum Amount Of Caffeine You Can Safely Consume Each Day – Tasting Table\nWhat Is a Safe Amount of Caffeine Per Day? – Corner Coffee Store\nHere's Exactly How Much Coffee You Can Drink Each Day – Philadelphia Magazine\n\nsources shown:\nhttps://www.fda.gov/consumers/consumer-updates/spilling-beans-how-much-caffeine-too-much\nhttps://www.caffeineinformer.com/caffeine-safety-laws\nhttps://www.upmc.com/healthbeat/family-health/\nhttps://baristalife.co/blogs/blog/how-much-caffeine-per-day-is-safe\nhttps://www.nutritionaloutlook.com/view/what-actions-could-fda-possibly-take-caffeine-year\n",
+  "sources": [
+    {
+      "url": "https://www.fda.gov/consumers/consumer-updates/spilling-beans-how-much-caffeine-too-much",
+      "file": "1.html",
+      "fetched_on": "2026-11-03",
+      "fetch_status": 200,
+      "final_url": "https://www.fda.gov/consumers/consumer-updates/spilling-beans-how-much-caffeine-too-much",
+      "sha256": "18e5cccd7ff8d5d73af06e8f3908391e6630094bfdfae72b35ddc9b21a70c799"
+    },
+    {
+      "url": "https://www.caffeineinformer.com/caffeine-safety-laws",
+      "file": "2.html",
+      "fetched_on": "2026-11-03",
+      "fetch_status": 200,
+      "final_url": "https://www.caffeineinformer.com/caffeine-safety-laws",
+      "sha256": "9626740a32bc728e60cc25e8b42960cf26d8ff4697829f053ee5fbc9d0b3840b"
+    },
+    {
+      "url": "https://www.upmc.com/healthbeat/family-health/",
+      "file": "3.html",
+      "fetched_on": "2026-11-03",
+      "fetch_status": 200,
+      "final_url": "https://www.upmc.com/healthbeat/family-health/",
+      "sha256": "3b868d28d02f0cf16bc52b82abfacebc4e7d900ce28b0cb6000873426a5274f9"
+    },
+    {
+      "url": "https://baristalife.co/blogs/blog/how-much-caffeine-per-day-is-safe",
+      "file": "4.html",
+      "fetched_on": "2026-11-03",
+      "fetch_status": 200,
+      "final_url": "https://baristalife.co/blogs/blog/how-much-caffeine-per-day-is-safe",
+      "sha256": "e3a1054e1308fbafc712abeeb7ecae46f3de68f5606497fadf3581e7cb663e3f"
+    },
+    {
+      "url": "https://www.nutritionaloutlook.com/view/what-actions-could-fda-possibly-take-caffeine-year",
+      "file": "5.html",
+      "fetched_on": "2026-11-03",
+      "fetch_status": 200,
+      "final_url": "https://www.nutritionaloutlook.com/view/what-actions-could-fda-possibly-take-caffeine-year",
+      "sha256": "1d4d599cafd8507e8083146196614551bb5d9e10a45df7a2d4cb8a01d1cf682b"
+    },
+    {
+      "url": "https://acibademinternational.com/blog/how-much-caffeine-is-too-much-your-daily-limit-explained/",
+      "file": "6.html",
+      "fetched_on": "2026-11-03",
+      "fetch_status": 200,
+      "final_url": "https://acibademinternational.com/blog/how-much-caffeine-is-too-much-your-daily-limit-explained/",
+      "sha256": "6d876f30961abd4c1a70f8efe5c3cb2c25bec8c8fb8f583479b77b5778e24f5d"
+    }
+  ],
+  "fetch_failures": [],
+  "claims": [
+    {
+      "claim_id": "0002-01",
+      "text": "For most healthy adults, the widely cited safe limit is about 400 mg of caffeine per day.",
+      "cited_urls": [
+        "https://acibademinternational.com/blog/how-much-caffeine-is-too-much-your-daily-limit-explained/"
+      ],
+      "label": "supported",
+      "reason_code": "paraphrase",
+      "evidence_span": "For most healthy adults, up to 400 milligrams of caffeine a day, roughly four 8-ounce cups of brewed coffee, is generally considered safe.",
+      "evidence_location": "6.html (Acibadem)",
+      "labeler_note": "Checked against Acibadem only; newhope source unresolved. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0002-02",
+      "text": "That's roughly four 8-ounce cups of brewed coffee, and it's the benchmark most major health organizations agree on.",
+      "cited_urls": [
+        "https://acibademinternational.com/blog/how-much-caffeine-is-too-much-your-daily-limit-explained/"
+      ],
+      "label": "partial",
+      "reason_code": "scope_shift",
+      "evidence_span": "The Mayo Clinic and MedlinePlus both use this figure, and it translates to roughly four 8-ounce cups of brewed coffee",
+      "evidence_location": "6.html (Acibadem)",
+      "labeler_note": "Cups supported. Page names two bodies; claim says most major health organizations. Checked against Acibadem only; newhope source unresolved. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": true
+    },
+    {
+      "claim_id": "0002-03",
+      "text": "The figure comes from the U.S. FDA and from the European Food Safety Authority, which found that single doses up to 200 mg and daily intakes up to 400 mg don't raise safety concerns for adults.",
+      "cited_urls": [
+        "https://acibademinternational.com/blog/how-much-caffeine-is-too-much-your-daily-limit-explained/"
+      ],
+      "label": "unverifiable",
+      "reason_code": "not_in_source",
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "Page does not mention FDA, EFSA or a 200 mg single dose. Checked against Acibadem only; newhope source unresolved. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0002-08",
+      "text": "Pregnant women: up to 200 mg a day doesn't raise safety concerns for the fetus, so that's the usual ceiling.",
+      "cited_urls": [
+        "https://acibademinternational.com/blog/how-much-caffeine-is-too-much-your-daily-limit-explained/"
+      ],
+      "label": "supported",
+      "reason_code": "paraphrase",
+      "evidence_span": "The pregnancy limit is 200 mg per day because caffeine crosses the placenta and a fetus lacks the enzymes to break it down.",
+      "evidence_location": "6.html (Acibadem)",
+      "labeler_note": "Checked against Acibadem only; newhope source unresolved. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0002-10",
+      "text": "Children and adolescents: EFSA puts it at 3 mg per kg of body weight per day, which for most teens works out to roughly 100 mg or less.",
+      "cited_urls": [
+        "https://acibademinternational.com/blog/how-much-caffeine-is-too-much-your-daily-limit-explained/"
+      ],
+      "label": "partial",
+      "reason_code": "scope_shift",
+      "evidence_span": "adolescents aged 12 to 18 stay under about 100 milligrams a day",
+      "evidence_location": "6.html (Acibadem)",
+      "labeler_note": "100 mg for teens supported, from US pediatric guidance. No EFSA and no 3 mg per kg on the page. Checked against Acibadem only; newhope source unresolved. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0002-12",
+      "text": "People with heart conditions, anxiety disorders, sleep problems, or on certain medications: often advised to limit further; some people feel wired and queasy at 150 mg, so individual tolerance matters a lot.",
+      "cited_urls": [
+        "https://acibademinternational.com/blog/how-much-caffeine-is-too-much-your-daily-limit-explained/"
+      ],
+      "label": "partial",
+      "reason_code": "scope_shift",
+      "evidence_span": "others feel wired and queasy at 150",
+      "evidence_location": "6.html (Acibadem)",
+      "labeler_note": "Tolerance and 150 mg supported. Heart conditions not found on the page. Checked against Acibadem only; newhope source unresolved. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": true
+    },
+    {
+      "claim_id": "0002-14",
+      "text": "For context on what counts toward 400 mg: brewed coffee is roughly 95–100 mg per 8 oz, a large coffeehouse coffee 250–330 mg, an espresso shot about 65 mg, black tea about 45–50 mg, and energy drinks anywhere from 70–300 mg.",
+      "cited_urls": [
+        "https://acibademinternational.com/blog/how-much-caffeine-is-too-much-your-daily-limit-explained/"
+      ],
+      "label": "partial",
+      "reason_code": "other",
+      "evidence_span": "A single espresso shot has roughly 65 mg, a 16-ounce coffeehouse brew can reach 250 to 330 mg",
+      "evidence_location": "6.html (Acibadem)",
+      "labeler_note": "Brewed 95 to 100, espresso 65 and coffeehouse 250 to 330 are on the page. Black tea is only implied (four cups equal 200 mg). The energy drink range is not on the page. Checked against Acibadem only; newhope source unresolved. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": true
+    },
+    {
+      "claim_id": "0002-15",
+      "text": "A single large café coffee can get you most of the way to the limit.",
+      "cited_urls": [
+        "https://acibademinternational.com/blog/how-much-caffeine-is-too-much-your-daily-limit-explained/"
+      ],
+      "label": "supported",
+      "reason_code": "paraphrase",
+      "evidence_span": "A single large coffeehouse brew or cold brew can contain 250–330 mg",
+      "evidence_location": "6.html (Acibadem)",
+      "labeler_note": "Checked against Acibadem only; newhope source unresolved. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0002-16",
+      "text": "Timing matters too, since caffeine has a roughly five-hour half-life, so a 200 mg coffee at 3 p.m. still leaves about 50 mg in your system at 1 a.m.",
+      "cited_urls": [
+        "https://acibademinternational.com/blog/how-much-caffeine-is-too-much-your-daily-limit-explained/"
+      ],
+      "label": "supported",
+      "reason_code": "exact",
+      "evidence_span": "average five-hour half-life means a 200 mg coffee at 3 p.m. still leaves roughly 50 mg circulating in your blood at 1 a.m.",
+      "evidence_location": "6.html (Acibadem)",
+      "labeler_note": "Checked against Acibadem only; newhope source unresolved. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0002-19",
+      "text": "Note that 400 mg is an upper bound considered safe, not a target—and if you have a medical condition, your doctor may advise something different.",
+      "cited_urls": [
+        "https://acibademinternational.com/blog/how-much-caffeine-is-too-much-your-daily-limit-explained/"
+      ],
+      "label": "supported",
+      "reason_code": "paraphrase",
+      "evidence_span": "Treat 400 as the outer fence, not a target to hit.",
+      "evidence_location": "6.html (Acibadem)",
+      "labeler_note": "Second half of the claim is advice about seeing a doctor, not checked. Checked against Acibadem only; newhope source unresolved. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": true
+    }
+  ],
+  "reviewed": false
+}
