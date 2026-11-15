@@ -68,6 +68,15 @@ file and needs no entry; its claim is `unverifiable` with no span.
    citation to a sentence (ALCE), to a statement the model segments itself (LongCite), or to a
    position inside a sentence (ALiiCE, NAACL 2025); none of them defines one citation covering
    a section, so this rule is a project decision.
+   When a section has several chips, each chip covers back to the previous chip or the
+   section heading, whichever is nearer. Chip lines with no claim between them, such as two
+   site names or a name followed by `+2`, are one chip. Inside a numbered or titled section,
+   sub-titles and image captions do not stop a chip; only the section heading or a previous
+   chip does. An answer with no inline markers and a source list at its end: the list covers
+   every body claim. Each claim gets every listed URL; the labeler prunes them and says so in
+   `labeler_note`. Published benchmarks use sentence-local scope, so results are also
+   reported under a strict sentence-local reading. (Owner decisions Q50, Q52 and chip to
+   chip, 2026-11-15.)
 
 ## How to label
 
