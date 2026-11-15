@@ -1,0 +1,228 @@
+{
+  "id": "0004",
+  "source_model": "perplexity",
+  "domain": "health",
+  "collected_on": "2026-11-03",
+  "answer_text": "Yes—for most adults, paracetamol (acetaminophen) and ibuprofen can be taken together if needed, as they work differently and do not directly interact. The NHS advises trying one medicine first, using the lowest effective dose, and stopping when pain or fever settles.\n\nHow to take them safely\nParacetamol: Typically 500–1,000 mg every 4–6 hours as needed; do not exceed 4 g in 24 hours unless a clinician advises otherwise.\n\nIbuprofen: Typically 200–400 mg every 4–6 hours as needed; for over-the-counter use, do not exceed 1,200 mg in 24 hours unless your clinician/pharmacist advises otherwise.\n\nYou may take them at the same time or stagger doses (for example, paracetamol first, then ibuprofen 2–3 hours later). Keep track of timings to avoid accidental overdose.\n\nTake ibuprofen with food or milk to reduce stomach irritation.\n\nImportant cautions\nDo not combine ibuprofen with other NSAIDs such as aspirin or naproxen, as this raises the risk of stomach ulcers and bleeding.\n\nAvoid ibuprofen or ask a clinician first if you have a history of stomach ulcer/bleeding, kidney disease, significant heart disease, uncontrolled high blood pressure, or certain asthma triggers.\n\nDo not take extra paracetamol from other products—many cold/flu remedies contain it—and excess paracetamol can cause serious liver injury.\n\nSeek medical advice before combining them if you are pregnant, especially after 28 weeks; ibuprofen is generally not recommended in the third trimester.\n\nWhen to get help\nContact a pharmacist, doctor, or urgent care service if pain/fever persists beyond a few days, worsens, or you need both medicines regularly. Get urgent help for signs such as black/tarry stools, vomiting blood, severe stomach pain, allergic reaction, or suspected overdose.\n\nSources:\n\nNHS — Paracetamol for adults:\nhttps://www.nhs.uk/medicines/paracetamol-for-adults/\n\nNHS — Ibuprofen for adults:\nhttps://www.nhs.uk/medicines/ibuprofen-for-adults/\n\nPatient.info — Paracetamol and ibuprofen interaction:\nhttps://patient.info/medication-interactions/paracetamol-and-ibuprofen-interaction\n\nBoots — Pain relief guide:\nhttps://www.boots.com/healthhub/pain/managing-pain/how-to-take-pain-relief\n\nMIMS India — Ibuprofen + Paracetamol:\nhttps://www.mims.com/india/drug/info/ibuprofen-plus-paracetamol/patientmedicine/ibuprofen-plus-paracetamol-oral\n\nsources shown:\nhttps://www.nhs.uk/medicines/paracetamol-for-adults/\nhttps://www.nhs.uk/medicines/ibuprofen-for-adults/\nhttps://patient.info/medication-interactions/paracetamol-and-ibuprofen-interaction\nhttps://www.boots.com/healthhub/pain/managing-pain/how-to-take-pain-relief\nhttps://www.mims.com/india/drug/info/ibuprofen-plus-paracetamol/patientmedicine/ibuprofen-plus-paracetamol-oral",
+  "sources": [
+    {
+      "url": "https://www.nhs.uk/medicines/paracetamol-for-adults/",
+      "file": "1.html",
+      "fetched_on": "2026-11-03",
+      "fetch_status": 200,
+      "final_url": "https://www.nhs.uk/medicines/paracetamol-for-adults/",
+      "sha256": "8e652575964c503d85bc28df838baacdeb3e42eecd58f9ea83524b1900e1968c"
+    },
+    {
+      "url": "https://www.nhs.uk/medicines/ibuprofen-for-adults/",
+      "file": "2.html",
+      "fetched_on": "2026-11-03",
+      "fetch_status": 200,
+      "final_url": "https://www.nhs.uk/medicines/ibuprofen-for-adults/",
+      "sha256": "08d782c4f7c92b9d8b433c2464a121bba6ca5a39b780bcd28fc492f674241ee1"
+    },
+    {
+      "url": "https://patient.info/medication-interactions/paracetamol-and-ibuprofen-interaction",
+      "file": "3.html",
+      "fetched_on": "2026-11-03",
+      "fetch_status": 200,
+      "final_url": "https://patient.info/medication-interactions/paracetamol-and-ibuprofen-interaction",
+      "sha256": "b23dd9539c54c0470ae2bb094b03753a486af7b5f0fd5cd6b5396972bc1d90a3"
+    },
+    {
+      "url": "https://www.boots.com/healthhub/pain/managing-pain/how-to-take-pain-relief",
+      "file": "4.html",
+      "fetched_on": "2026-11-03",
+      "fetch_status": 200,
+      "final_url": "https://www.boots.com/healthhub/pain/managing-pain/how-to-take-pain-relief",
+      "sha256": "27bace03f2449804813d8ffbcfeed1754b0aa73bfb7a1b7e307113d01fd778ca"
+    }
+  ],
+  "fetch_failures": [
+    {
+      "url": "https://www.mims.com/india/drug/info/ibuprofen-plus-paracetamol/patientmedicine/ibuprofen-plus-paracetamol-oral",
+      "fetched_on": "2026-11-03",
+      "fetch_status": 403,
+      "final_url": "https://www.mims.com/india/drug/info/ibuprofen-plus-paracetamol/patientmedicine/ibuprofen-plus-paracetamol-oral",
+      "reason": "http_error",
+      "bytes": 5811,
+      "file": "5.html"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "0004-01",
+      "text": "Yes—for most adults, paracetamol (acetaminophen) and ibuprofen can be taken together if needed, as they work differently and do not directly interact.",
+      "cited_urls": [
+        "https://patient.info/medication-interactions/paracetamol-and-ibuprofen-interaction"
+      ],
+      "label": "supported",
+      "reason_code": "paraphrase",
+      "evidence_span": "In fact, they are often taken together because they work in different ways to provide better pain relief than either medicine alone.",
+      "evidence_location": "3.html (patient.info)",
+      "labeler_note": "Inline markers not observed, session not retrievable. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0004-02",
+      "text": "The NHS advises trying one medicine first, using the lowest effective dose, and stopping when pain or fever settles.",
+      "cited_urls": [
+        "https://www.nhs.uk/medicines/paracetamol-for-adults/"
+      ],
+      "label": "supported",
+      "reason_code": "paraphrase",
+      "evidence_span": "Use the lowest dose that works for you and stop taking them when the pain has gone.",
+      "evidence_location": "1.html (NHS paracetamol)",
+      "labeler_note": "Same page also says to try them on their own first. Inline markers not observed, session not retrievable. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0004-04",
+      "text": "Paracetamol: Typically 500–1,000 mg every 4–6 hours as needed; do not exceed 4 g in 24 hours unless a clinician advises otherwise.",
+      "cited_urls": [
+        "https://www.nhs.uk/medicines/paracetamol-for-adults/"
+      ],
+      "label": "supported",
+      "reason_code": "paraphrase",
+      "evidence_span": "do not take more than 8 tablets or capsules in 24 hours",
+      "evidence_location": "1.html (NHS paracetamol)",
+      "labeler_note": "4 g follows from 8 x 500mg. Page says at least 4 hours between doses; claim says every 4 to 6. Inline markers not observed, session not retrievable. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": true
+    },
+    {
+      "claim_id": "0004-05",
+      "text": "Ibuprofen: Typically 200–400 mg every 4–6 hours as needed; for over-the-counter use, do not exceed 1,200 mg in 24 hours unless your clinician/pharmacist advises otherwise.",
+      "cited_urls": [
+        "https://www.nhs.uk/medicines/ibuprofen-for-adults/"
+      ],
+      "label": "partial",
+      "reason_code": "number_changed",
+      "evidence_span": "take them up to 3 times a day",
+      "evidence_location": "2.html (NHS ibuprofen)",
+      "labeler_note": "200 to 400 mg follows from 1 or 2 200mg tablets. No page states 1,200 mg; page says up to 3 times a day, claim says every 4 to 6 hours. Inline markers not observed, session not retrievable. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": true
+    },
+    {
+      "claim_id": "0004-06",
+      "text": "You may take them at the same time or stagger doses (for example, paracetamol first, then ibuprofen 2–3 hours later).",
+      "cited_urls": [
+        "https://patient.info/medication-interactions/paracetamol-and-ibuprofen-interaction"
+      ],
+      "label": "supported",
+      "reason_code": "paraphrase",
+      "evidence_span": "It is safe to take paracetamol and ibuprofen at the same time, or you can stagger them (taking one, then the other a few hours later).",
+      "evidence_location": "3.html (patient.info)",
+      "labeler_note": "Inline markers not observed, session not retrievable. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0004-07",
+      "text": "Keep track of timings to avoid accidental overdose.",
+      "cited_urls": [
+        "https://www.nhs.uk/medicines/paracetamol-for-adults/",
+        "https://www.nhs.uk/medicines/ibuprofen-for-adults/",
+        "https://patient.info/medication-interactions/paracetamol-and-ibuprofen-interaction",
+        "https://www.boots.com/healthhub/pain/managing-pain/how-to-take-pain-relief",
+        "https://www.mims.com/india/drug/info/ibuprofen-plus-paracetamol/patientmedicine/ibuprofen-plus-paracetamol-oral"
+      ],
+      "label": "unverifiable",
+      "reason_code": "not_in_source",
+      "evidence_span": null,
+      "evidence_location": null,
+      "labeler_note": "No readable page mentions tracking timings. Boots page is an empty shell, MIMS blocked (403). Inline markers not observed, session not retrievable. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0004-08",
+      "text": "Take ibuprofen with food or milk to reduce stomach irritation.",
+      "cited_urls": [
+        "https://patient.info/medication-interactions/paracetamol-and-ibuprofen-interaction"
+      ],
+      "label": "partial",
+      "reason_code": "hedge_dropped",
+      "evidence_span": "Ibuprofen should ideally be taken with food or a glass of milk.",
+      "evidence_location": "3.html (patient.info)",
+      "labeler_note": "Page says ideally and gives no reason; claim adds stomach irritation. Inline markers not observed, session not retrievable. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0004-10",
+      "text": "Do not combine ibuprofen with other NSAIDs such as aspirin or naproxen, as this raises the risk of stomach ulcers and bleeding.",
+      "cited_urls": [
+        "https://www.nhs.uk/medicines/ibuprofen-for-adults/"
+      ],
+      "label": "supported",
+      "reason_code": "paraphrase",
+      "evidence_span": "Do not take ibuprofen at the same time as other non-steroidal anti-inflammatory drugs (NSAIDs), such as naproxen or aspirin.",
+      "evidence_location": "2.html (NHS ibuprofen)",
+      "labeler_note": "Inline markers not observed, session not retrievable. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0004-11",
+      "text": "Avoid ibuprofen or ask a clinician first if you have a history of stomach ulcer/bleeding, kidney disease, significant heart disease, uncontrolled high blood pressure, or certain asthma triggers.",
+      "cited_urls": [
+        "https://patient.info/medication-interactions/paracetamol-and-ibuprofen-interaction"
+      ],
+      "label": "partial",
+      "reason_code": "scope_shift",
+      "evidence_span": "don’t have medical conditions that make ibuprofen unsafe (such as stomach ulcers, kidney problems, or certain heart conditions)",
+      "evidence_location": "3.html (patient.info)",
+      "labeler_note": "Asthma is elsewhere on the page. No readable page lists high blood pressure. Inline markers not observed, session not retrievable. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0004-12",
+      "text": "Do not take extra paracetamol from other products—many cold/flu remedies contain it—and excess paracetamol can cause serious liver injury.",
+      "cited_urls": [
+        "https://www.nhs.uk/medicines/paracetamol-for-adults/"
+      ],
+      "label": "supported",
+      "reason_code": "paraphrase",
+      "evidence_span": "You should also avoid taking paracetamol at the same time as other medicines containing paracetamol, for example, cold and flu remedies.",
+      "evidence_location": "1.html (NHS paracetamol)",
+      "labeler_note": "Liver damage from too much paracetamol is on the same page. Inline markers not observed, session not retrievable. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0004-13",
+      "text": "Seek medical advice before combining them if you are pregnant, especially after 28 weeks; ibuprofen is generally not recommended in the third trimester.",
+      "cited_urls": [
+        "https://patient.info/medication-interactions/paracetamol-and-ibuprofen-interaction"
+      ],
+      "label": "supported",
+      "reason_code": "paraphrase",
+      "evidence_span": "Do not take ibuprofen if you are more than 28 weeks pregnant",
+      "evidence_location": "3.html (patient.info)",
+      "labeler_note": "Inline markers not observed, session not retrievable. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    },
+    {
+      "claim_id": "0004-15",
+      "text": "Contact a pharmacist, doctor, or urgent care service if pain/fever persists beyond a few days, worsens, or you need both medicines regularly.",
+      "cited_urls": [
+        "https://www.nhs.uk/medicines/paracetamol-for-adults/"
+      ],
+      "label": "partial",
+      "reason_code": "scope_shift",
+      "evidence_span": "Do not take or use paracetamol for more than 3 days unless a doctor tells you to.",
+      "evidence_location": "1.html (NHS paracetamol)",
+      "labeler_note": "Page gives a 3 day limit; nothing on worsening or regular use of both. Inline markers not observed, session not retrievable. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": true
+    },
+    {
+      "claim_id": "0004-16",
+      "text": "Get urgent help for signs such as black/tarry stools, vomiting blood, severe stomach pain, allergic reaction, or suspected overdose.",
+      "cited_urls": [
+        "https://www.nhs.uk/medicines/ibuprofen-for-adults/"
+      ],
+      "label": "supported",
+      "reason_code": "paraphrase",
+      "evidence_span": "vomiting blood or poo that's black, sticky and tar-like",
+      "evidence_location": "2.html (NHS ibuprofen)",
+      "labeler_note": "Allergic reaction and overdose advice are on the same page. Inline markers not observed, session not retrievable. Label proposed by assistant, accepted by owner 2026-11-15; first pass.",
+      "hard": false
+    }
+  ],
+  "reviewed": false
+}
